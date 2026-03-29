@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wafula Andrew Wekesa | Software Engineer</title>
+    
+    <meta name="description" content="Portfolio of Wafula Andrew Wekesa, Software Engineering student at Kisii University specializing in Java and SRE.">
+    <meta name="keywords" content="Andrew Wekesa, Software Engineer, Kisii University, Java Developer, Kenya Tech">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    
     <style>
         .modal { display: none; position: fixed; z-index: 20000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); }
         .modal-content { background: white; margin: 8% auto; padding: 40px; border-radius: 30px; max-width: 650px; position: relative; animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
@@ -15,6 +20,7 @@
         .skill-tag:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
         .hobby-card { background: white; padding: 1.5rem; border-radius: 1.5rem; border: 1px solid #f1f5f9; transition: all 0.3s; }
         .hobby-card:hover { transform: translateY(-5px); border-color: #3b82f6; }
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans selection:bg-blue-200">
@@ -36,19 +42,21 @@
             <a href="#education" class="hover:text-blue-600 transition">Education</a>
             <a href="#tech" class="hover:text-blue-600 transition">Stack</a>
             <a href="#hobbies" class="hover:text-blue-600 transition">Hobbies</a>
-            <a href="#contact" class="text-blue-600 border-b-2 border-blue-600">Contact</a>
+            <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
         </div>
     </nav>
 
     <header id="home" class="py-32 px-10 text-center bg-slate-900 text-white">
         <div class="max-w-4xl mx-auto">
+            <img src="profile.jpg" alt="Andrew Wekesa" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-8 border-4 border-blue-600 object-cover shadow-2xl hover:scale-110 transition duration-500">
+            
             <h2 class="text-6xl md:text-8xl font-black mb-8 tracking-tighter italic uppercase">Software Engineer</h2>
             <p class="text-xl opacity-60 mb-12 max-w-2xl mx-auto font-light">
-                21-year-old developer at Kisii University. My goal is to own a software company or work as a systems developer.
+                21-year-old developer at Kisii University. Specializing in Systems Development and Software Requirements Engineering.
             </p>
             <div class="flex flex-wrap justify-center gap-5">
                 <a href="#tech" class="px-10 py-5 bg-blue-600 rounded-2xl font-bold hover:bg-blue-500 transition shadow-2xl transform hover:-translate-y-1">View Stack</a>
-                <a href="mailto:andrewwekesa675@gmail.com" class="px-10 py-5 bg-white text-slate-900 rounded-2xl font-bold hover:bg-slate-100 transition shadow-2xl transform hover:-translate-y-1">Send Email</a>
+                <a href="#contact" class="px-10 py-5 bg-white text-slate-900 rounded-2xl font-bold hover:bg-slate-100 transition shadow-2xl transform hover:-translate-y-1">Get in Touch</a>
             </div>
         </div>
     </header>
@@ -112,7 +120,7 @@
             </div>
         </div>
 
-        <div class="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto mb-20">
+        <div class="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto">
             <span class="skill-tag">Systems Analysis</span>
             <span class="skill-tag">Database Management</span>
             <span class="skill-tag">Problem Solving</span>
@@ -150,10 +158,18 @@
     </section>
 
     <section id="contact" class="py-24 px-10 bg-slate-100">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-4xl mx-auto">
             <div class="bg-slate-900 rounded-[3rem] p-12 text-white shadow-3xl">
                 <h3 class="text-3xl font-black mb-10 text-center italic uppercase">Hire Andrew</h3>
-                <div class="grid md:grid-cols-3 gap-6">
+                
+                <form action="https://formspree.io/f/your-id-here" method="POST" class="max-w-xl mx-auto space-y-4 mb-12">
+                    <input type="text" name="name" placeholder="Name" class="w-full p-4 bg-slate-800 border border-slate-700 rounded-xl text-white outline-none focus:border-blue-500 transition" required>
+                    <input type="email" name="email" placeholder="Email Address" class="w-full p-4 bg-slate-800 border border-slate-700 rounded-xl text-white outline-none focus:border-blue-500 transition" required>
+                    <textarea name="message" placeholder="How can I help you?" class="w-full p-4 bg-slate-800 border border-slate-700 rounded-xl text-white h-32 outline-none focus:border-blue-500 transition" required></textarea>
+                    <button type="submit" class="w-full py-4 bg-blue-600 rounded-xl font-black uppercase tracking-widest hover:bg-blue-500 transition">Send Message</button>
+                </form>
+
+                <div class="grid md:grid-cols-3 gap-6 border-t border-slate-800 pt-10">
                     <a href="https://wa.me/254710435113" target="_blank" class="p-6 bg-green-600/10 border border-green-600/30 rounded-2xl text-center group hover:bg-green-600 transition">
                         <i class="fab fa-whatsapp text-2xl mb-2 text-green-500 group-hover:text-white"></i>
                         <p class="text-xs font-bold block group-hover:text-white uppercase">WhatsApp</p>
@@ -164,7 +180,7 @@
                     </a>
                     <a href="mailto:andrewwekesa675@gmail.com" class="p-6 bg-purple-600/10 border border-purple-600/30 rounded-2xl text-center group hover:bg-purple-600 transition">
                         <i class="fas fa-envelope text-2xl mb-2 text-purple-500 group-hover:text-white"></i>
-                        <p class="text-xs font-bold block group-hover:text-white uppercase">Gmailing</p>
+                        <p class="text-xs font-bold block group-hover:text-white uppercase">Email</p>
                     </a>
                 </div>
                 <div class="mt-10 text-center opacity-40 text-[10px] font-bold tracking-widest uppercase">
@@ -197,10 +213,6 @@
             dot.style.left = e.clientX + "px";
             dot.style.top = e.clientY + "px";
             outline.animate({ left: e.clientX + "px", top: e.clientY + "px" }, { duration: 500, fill: "forwards" });
-        });
-        document.querySelectorAll('a, button, [onclick], tr').forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
         });
     </script>
 </body>
