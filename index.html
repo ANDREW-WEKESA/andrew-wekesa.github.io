@@ -13,10 +13,11 @@
         @keyframes popIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .skill-tag { border: 1px solid #e2e8f0; padding: 0.5rem 1rem; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.2s; }
         .skill-tag:hover { border-color: #2563eb; color: #2563eb; background: #eff6ff; }
+        .hobby-card { background: white; padding: 1.5rem; border-radius: 1.5rem; border: 1px solid #f1f5f9; transition: all 0.3s; }
+        .hobby-card:hover { transform: translateY(-5px); border-color: #3b82f6; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-sans selection:bg-blue-200">
-<p><a href="hobbies.html">View My Hobbies & Interests</a></p>
     <div id="cursor-dot"></div>
     <div id="cursor-outline"></div>
 
@@ -34,6 +35,7 @@
             <a href="#home" class="hover:text-blue-600 transition">Intro</a>
             <a href="#education" class="hover:text-blue-600 transition">Education</a>
             <a href="#tech" class="hover:text-blue-600 transition">Stack</a>
+            <a href="#hobbies" class="hover:text-blue-600 transition">Hobbies</a>
             <a href="#contact" class="text-blue-600 border-b-2 border-blue-600">Contact</a>
         </div>
     </nav>
@@ -102,37 +104,7 @@
                 <i class="fas fa-microchip text-4xl text-blue-600 mb-6"></i>
                 <h4 class="font-bold text-xl mb-2">C / C++</h4>
                 <p class="text-slate-400 text-xs italic">Click for Syllabus</p>
-  <div class="max-w-4xl mx-auto px-6">
-    <h3 class="text-[10px] font-black mb-10 text-center uppercase tracking-[0.5em] text-slate-400">Core Competencies</h3>
-    <div class="flex flex-wrap justify-center gap-6">
-        
-        <div class="skill-pill group">
-            <span class="pill-text">Systems Analysis</span>
-            <div class="pill-tip">Designing efficient software architectures and workflows.</div>
-        </div>
-
-        <div class="skill-pill group">
-            <span class="pill-text">Database Management</span>
-            <div class="pill-tip">Expertise in SQL, ACID properties, and data recovery.</div>
-        </div>
-
-        <div class="skill-pill group">
-            <span class="pill-text">Problem Solving</span>
-            <div class="pill-tip">Turning complex bugs into clean, functional code.</div>
-        </div>
-
-        <div class="skill-pill group">
-            <span class="pill-text">Sublime / Notepad++</span>
-            <div class="pill-tip">Fast, lightweight text editing for rapid development.</div>
-        </div>
-
-        <div class="skill-pill group">
-            <span class="pill-text">HTML & CSS</span>
-            <div class="pill-tip">Crafting modern, responsive, and interactive web UIs.</div>
-        </div>
-
-    </div>
-</div>          </div>
+            </div>
             <div onclick="openModal('Web Interaction', '• Logic: Async/Await & Promises<br>• UI: Dynamic DOM Manipulation<br>• Standards: ES6+ Modern Syntax')" class="p-10 bg-white rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-2xl hover:border-yellow-400 transition-all cursor-pointer">
                 <i class="fab fa-js text-4xl text-yellow-500 mb-6"></i>
                 <h4 class="font-bold text-xl mb-2">JavaScript</h4>
@@ -140,12 +112,40 @@
             </div>
         </div>
 
-        <div class="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto">
+        <div class="flex flex-wrap justify-center gap-4 max-w-3xl mx-auto mb-20">
             <span class="skill-tag">Systems Analysis</span>
             <span class="skill-tag">Database Management</span>
             <span class="skill-tag">Problem Solving</span>
             <span class="skill-tag">Notepad++ / Sublime</span>
             <span class="skill-tag">HTML & CSS</span>
+        </div>
+    </section>
+
+    <section id="hobbies" class="py-24 px-10 bg-white">
+        <div class="max-w-5xl mx-auto text-center">
+            <h3 class="text-xs font-black mb-16 uppercase tracking-[0.5em] text-slate-400">Interests & Hobbies</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="hobby-card">
+                    <i class="fas fa-chart-line text-blue-500 text-2xl mb-4"></i>
+                    <h4 class="font-bold text-sm uppercase mb-2">Sports Analytics</h4>
+                    <p class="text-slate-500 text-xs">Analyzing football data and match probabilities.</p>
+                </div>
+                <div class="hobby-card">
+                    <i class="fas fa-code text-blue-500 text-2xl mb-4"></i>
+                    <h4 class="font-bold text-sm uppercase mb-2">Java Dev</h4>
+                    <p class="text-slate-500 text-xs">Practicing OOP logic and class structures.</p>
+                </div>
+                <div class="hobby-card">
+                    <i class="fas fa-robot text-blue-500 text-2xl mb-4"></i>
+                    <h4 class="font-bold text-sm uppercase mb-2">AI Training</h4>
+                    <p class="text-slate-500 text-xs">Fact-checking and refining AI model outputs.</p>
+                </div>
+                <div class="hobby-card">
+                    <i class="fas fa-file-pdf text-blue-500 text-2xl mb-4"></i>
+                    <h4 class="font-bold text-sm uppercase mb-2">Technical Writing</h4>
+                    <p class="text-slate-500 text-xs">Formatting academic guides and system docs.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -202,6 +202,6 @@
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
         });
-    </script><p><a href="hobbies.html">View My Hobbies & Interests</a></p>
+    </script>
 </body>
 </html>
