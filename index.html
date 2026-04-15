@@ -4,429 +4,104 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Andrew Wekesa — Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --green:       #00ff88;
-  --green-dim:   #00cc66;
-  --green-faint: rgba(0,255,136,0.07);
-  --green-glow:  rgba(0,255,136,0.18);
-  --green-glow2: rgba(0,255,136,0.35);
-  --blue:        #58a6ff;
-  --yellow:      #ffd700;
-  --red:         #ff5555;
-  --cyan:        #00e5ff;
-  --purple:      #c792ea;
-  --white:       #e6edf3;
-  --muted:       #4a5568;
-  --muted2:      #718096;
-  --bg:          #060a06;
-  --bg2:         #0a0f0a;
-  --bg3:         #0d140d;
-  --border:      #162216;
-  --border2:     #1e2e1e;
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#00ff88;--green-dim:#00cc66;--green-faint:rgba(0,255,136,0.07);
+  --blue:#58a6ff;--yellow:#ffd700;--red:#ff5555;--cyan:#00e5ff;--purple:#c792ea;
+  --white:#e6edf3;--muted:#4a5568;--muted2:#718096;
+  --bg:#060a06;--bg2:#0a0f0a;--border:#162216;--border2:#1e2e1e;
 }
-
-html, body {
-  height: 100%;
-  background: var(--bg);
-  color: var(--green);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13.5px;
-  line-height: 1.65;
-  overflow: hidden;
-}
-
-/* ── Animated background grid ── */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  pointer-events: none;
-  z-index: 0;
-  animation: gridPulse 8s ease-in-out infinite;
-}
-
-@keyframes gridPulse {
-  0%,100% { opacity: 0.6; }
-  50%      { opacity: 1; }
-}
-
-/* ── CRT scanlines ── */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 3px,
-    rgba(0,0,0,0.06) 3px,
-    rgba(0,0,0,0.06) 4px
-  );
-  pointer-events: none;
-  z-index: 200;
-}
-
-/* ── Vignette ── */
-#vignette {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.85) 100%);
-  pointer-events: none;
-  z-index: 201;
-}
-
-/* ── Ambient glow orbs ── */
-#orb1, #orb2 {
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-  filter: blur(80px);
-  opacity: 0.06;
-}
-#orb1 {
-  width: 500px; height: 500px;
-  background: var(--green);
-  top: -150px; left: -150px;
-  animation: orbFloat1 12s ease-in-out infinite;
-}
-#orb2 {
-  width: 400px; height: 400px;
-  background: var(--cyan);
-  bottom: -100px; right: -100px;
-  animation: orbFloat2 15s ease-in-out infinite;
-}
-@keyframes orbFloat1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(60px,40px)} }
-@keyframes orbFloat2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-40px,-60px)} }
-
-/* ── Wrapper ── */
-#terminal-wrapper {
-  position: relative;
-  z-index: 10;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-/* ── Title bar ── */
-#titlebar {
-  background: linear-gradient(180deg, #0f160f 0%, #0a0f0a 100%);
-  border-bottom: 1px solid var(--border2);
-  padding: 10px 18px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  box-shadow: 0 1px 0 rgba(0,255,136,0.06), 0 4px 20px rgba(0,0,0,0.4);
-}
-
-.dots { display: flex; gap: 7px; align-items: center; }
-.dot { width: 13px; height: 13px; border-radius: 50%; cursor: default; transition: filter 0.2s; }
-.dot:hover { filter: brightness(1.3); }
-.dot.red    { background: #ff5f57; box-shadow: 0 0 6px #ff5f5766; }
-.dot.yellow { background: #ffbd2e; box-shadow: 0 0 6px #ffbd2e66; }
-.dot.green  { background: #28c840; box-shadow: 0 0 6px #28c84066; }
-
-#titlebar-center {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-#titlebar-text {
-  font-size: 11.5px;
-  color: var(--muted2);
-  letter-spacing: 0.06em;
-}
-
-.tb-badge {
-  font-size: 10px;
-  padding: 2px 8px;
-  border: 1px solid var(--border2);
-  border-radius: 20px;
-  color: var(--muted2);
-  letter-spacing: 0.05em;
-}
-
-#titlebar-right {
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-  min-width: 80px;
-  text-align: right;
-}
-
-/* ── Output ── */
-#output {
-  flex: 1;
-  overflow-y: auto;
-  padding: 22px 28px 10px;
-  scroll-behavior: smooth;
-  position: relative;
-  z-index: 10;
-}
-
-#output::-webkit-scrollbar { width: 3px; }
-#output::-webkit-scrollbar-track { background: transparent; }
-#output::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
-#output::-webkit-scrollbar-thumb:hover { background: var(--green-dim); }
-
-/* ── Input area ── */
-#input-area {
-  display: flex;
-  align-items: center;
-  padding: 11px 28px 15px;
-  flex-shrink: 0;
-  border-top: 1px solid var(--border2);
-  background: linear-gradient(0deg, var(--bg2) 0%, var(--bg) 100%);
-  box-shadow: 0 -1px 0 rgba(0,255,136,0.08), inset 0 1px 0 rgba(0,255,136,0.04);
-  position: relative;
-  z-index: 10;
-}
-
-#prompt-label {
-  white-space: nowrap;
-  user-select: none;
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-.pl-user   { color: var(--green); font-weight: 500; }
-.pl-at     { color: var(--muted); }
-.pl-host   { color: var(--cyan); font-weight: 500; }
-.pl-sep    { color: var(--muted); }
-.pl-path   { color: var(--blue); }
-.pl-dollar { color: var(--green); margin-right: 10px; font-weight: 700; }
-
-#cmd-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: var(--white);
-  font-family: inherit;
-  font-size: 13.5px;
-  caret-color: var(--green);
-  letter-spacing: 0.01em;
-}
-
-/* ── Lines ── */
-.line { margin: 1.5px 0; white-space: pre-wrap; word-break: break-word; }
-.line.prompt {
-  color: var(--green);
-  display: flex;
-  gap: 0;
-  align-items: flex-start;
-  margin: 3px 0;
-}
-.line.prompt .p-label { white-space: nowrap; }
-.line.prompt .cmd-text { color: var(--white); margin-left: 10px; }
-.line.empty  { height: 8px; }
-.line.output { color: #5a8a6a; }
-.line.error  { color: var(--red); }
-.line.info   { color: var(--cyan); }
-.line.accent { color: var(--yellow); }
-.line.white  { color: var(--white); }
-.line.muted  { color: var(--muted2); font-size: 12px; }
-.line.green  { color: var(--green); }
-.line.purple { color: var(--purple); }
-.line.dim    { color: #2a4a2a; }
-
-/* ── Divider ── */
-.divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border2) 20%, var(--border2) 80%, transparent);
-  margin: 6px 0;
-}
-
-/* ── Boot animation ── */
-@keyframes slideIn {
-  from { opacity: 0; transform: translateX(-6px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-.boot-line {
-  animation: slideIn 0.18s ease forwards;
-  opacity: 0;
-}
-
-/* ── Typing effect ── */
-@keyframes typeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-/* ── Project cards ── */
-.project-card {
-  border: 1px solid var(--border2);
-  border-left: 3px solid var(--green);
-  padding: 12px 16px;
-  margin: 5px 0;
-  background: var(--green-faint);
-  border-radius: 0 6px 6px 0;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.2s, background 0.2s;
-}
-.project-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(0,255,136,0.04) 0%, transparent 60%);
-  pointer-events: none;
-}
-.project-card:hover {
-  border-color: var(--border2);
-  border-left-color: var(--cyan);
-  background: rgba(0,229,255,0.05);
-}
-.p-header { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.p-title  { color: var(--yellow); font-weight: 700; font-size: 13px; }
-.p-status {
-  font-size: 10px;
-  padding: 2px 8px;
-  border-radius: 20px;
-  border: 1px solid;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-}
-.p-tech { color: var(--cyan); font-size: 11.5px; margin-top: 4px; opacity: 0.85; }
-.p-desc { color: var(--white); font-size: 12px; margin-top: 5px; opacity: 0.8; line-height: 1.5; }
-.p-link {
-  color: var(--green-dim);
-  font-size: 11.5px;
-  margin-top: 6px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  transition: color 0.2s;
-}
-.p-link:hover { color: var(--green); text-decoration: underline; }
-
-/* ── Skill bars ── */
-.skills-section { margin: 4px 0; }
-.skill-row { display: flex; align-items: center; gap: 12px; margin: 5px 0; }
-.skill-name { width: 130px; color: var(--white); font-size: 12px; flex-shrink: 0; }
-.skill-track {
-  flex: 1;
-  height: 5px;
-  background: var(--border2);
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-}
-.skill-fill {
-  height: 100%;
-  border-radius: 10px;
-  width: 0%;
-  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-}
-.skill-fill::after {
-  content: '';
-  position: absolute;
-  right: 0; top: 0; bottom: 0;
-  width: 20px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3));
-  border-radius: 10px;
-}
-.skill-pct { font-size: 11px; color: var(--muted2); min-width: 32px; text-align: right; }
-
-/* ── Tag cloud ── */
-.tag-cloud { display: flex; flex-wrap: wrap; gap: 7px; margin: 6px 0; }
-.tag {
-  padding: 3px 11px;
-  border: 1px solid var(--border2);
-  border-radius: 20px;
-  font-size: 11.5px;
-  transition: border-color 0.2s, color 0.2s;
-  cursor: default;
-}
-.tag:hover { border-color: var(--green-dim); color: var(--green); }
-.tag.green  { color: var(--green-dim);  border-color: rgba(0,204,102,0.3); }
-.tag.cyan   { color: var(--cyan);       border-color: rgba(0,229,255,0.3); }
-.tag.yellow { color: var(--yellow);     border-color: rgba(255,215,0,0.3); }
-.tag.purple { color: var(--purple);     border-color: rgba(199,146,234,0.3); }
-.tag.blue   { color: var(--blue);       border-color: rgba(88,166,255,0.3); }
-
-/* ── Stat grid ── */
-.stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; margin: 6px 0; }
-.stat-card {
-  border: 1px solid var(--border2);
-  border-radius: 6px;
-  padding: 10px 14px;
-  background: var(--green-faint);
-  text-align: center;
-}
-.stat-val { font-size: 22px; font-weight: 700; color: var(--green); line-height: 1.2; }
-.stat-lbl { font-size: 10.5px; color: var(--muted2); margin-top: 2px; letter-spacing: 0.05em; }
-
-/* ── Blinking cursor ── */
-.cursor {
-  display: inline-block;
-  width: 7px; height: 13px;
-  background: var(--green);
-  animation: blink 1s step-end infinite;
-  vertical-align: middle;
-  margin-left: 1px;
-  border-radius: 1px;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-/* ── Glitch text ── */
-@keyframes glitch {
-  0%   { text-shadow: 2px 0 var(--red), -2px 0 var(--cyan); }
-  20%  { text-shadow: -2px 0 var(--red), 2px 0 var(--cyan); }
-  40%  { text-shadow: 2px 0 var(--cyan), -2px 0 var(--red); }
-  60%  { text-shadow: 0 0 transparent; }
-  80%  { text-shadow: -2px 0 var(--cyan), 2px 0 var(--red); }
-  100% { text-shadow: 2px 0 var(--red), -2px 0 var(--cyan); }
-}
-.glitch { animation: glitch 0.4s steps(1) 3; }
-
-/* ── Scanline flash on boot ── */
-@keyframes scanFlash {
-  0%   { opacity: 0; }
-  10%  { opacity: 0.15; }
-  100% { opacity: 0; }
-}
-#scan-flash {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 0%, var(--green) 50%, transparent 100%);
-  pointer-events: none;
-  z-index: 300;
-  opacity: 0;
-  animation: scanFlash 1.2s ease-out forwards;
-}
-
-/* ── Mobile ── */
-@media (max-width: 600px) {
-  html { font-size: 12px; }
-  #output { padding: 14px 14px 8px; }
-  #input-area { padding: 9px 14px 13px; }
-  .stat-grid { grid-template-columns: repeat(2, 1fr); }
-}
+html,body{height:100%;background:var(--bg);color:var(--green);font-family:'JetBrains Mono',monospace;font-size:13.5px;line-height:1.65;overflow:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,255,136,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,136,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;animation:gridPulse 8s ease-in-out infinite}
+@keyframes gridPulse{0%,100%{opacity:.6}50%{opacity:1}}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.06) 3px,rgba(0,0,0,.06) 4px);pointer-events:none;z-index:200}
+#vignette{position:fixed;inset:0;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.85) 100%);pointer-events:none;z-index:201}
+#orb1,#orb2{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px);opacity:.06}
+#orb1{width:500px;height:500px;background:var(--green);top:-150px;left:-150px;animation:orbFloat1 12s ease-in-out infinite}
+#orb2{width:400px;height:400px;background:var(--cyan);bottom:-100px;right:-100px;animation:orbFloat2 15s ease-in-out infinite}
+@keyframes orbFloat1{0%,100%{transform:translate(0,0)}50%{transform:translate(60px,40px)}}
+@keyframes orbFloat2{0%,100%{transform:translate(0,0)}50%{transform:translate(-40px,-60px)}}
+#scan-flash{position:fixed;inset:0;background:linear-gradient(180deg,transparent 0%,var(--green) 50%,transparent 100%);pointer-events:none;z-index:300;opacity:0;animation:scanFlash 1.2s ease-out forwards}
+@keyframes scanFlash{0%{opacity:0}10%{opacity:.15}100%{opacity:0}}
+#terminal-wrapper{position:relative;z-index:10;width:100%;height:100vh;display:flex;flex-direction:column}
+#titlebar{background:linear-gradient(180deg,#0f160f,#0a0f0a);border-bottom:1px solid var(--border2);padding:10px 18px;display:flex;align-items:center;gap:10px;flex-shrink:0;box-shadow:0 1px 0 rgba(0,255,136,.06),0 4px 20px rgba(0,0,0,.4)}
+.dots{display:flex;gap:7px;align-items:center}
+.dot{width:13px;height:13px;border-radius:50%;cursor:default;transition:filter .2s}
+.dot:hover{filter:brightness(1.3)}
+.dot.red{background:#ff5f57;box-shadow:0 0 6px #ff5f5766}
+.dot.yellow{background:#ffbd2e;box-shadow:0 0 6px #ffbd2e66}
+.dot.green{background:#28c840;box-shadow:0 0 6px #28c84066}
+#titlebar-center{flex:1;display:flex;align-items:center;justify-content:center;gap:10px}
+#titlebar-text{font-size:11.5px;color:var(--muted2);letter-spacing:.06em}
+.tb-badge{font-size:10px;padding:2px 8px;border:1px solid var(--border2);border-radius:20px;color:var(--muted2);letter-spacing:.05em}
+#titlebar-right{font-size:11px;color:var(--muted);letter-spacing:.04em;min-width:80px;text-align:right}
+#output{flex:1;overflow-y:auto;padding:22px 28px 10px;scroll-behavior:smooth;position:relative;z-index:10}
+#output::-webkit-scrollbar{width:3px}
+#output::-webkit-scrollbar-track{background:transparent}
+#output::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+#output::-webkit-scrollbar-thumb:hover{background:var(--green-dim)}
+#input-area{display:flex;align-items:center;padding:11px 28px 15px;flex-shrink:0;border-top:1px solid var(--border2);background:linear-gradient(0deg,var(--bg2),var(--bg));box-shadow:0 -1px 0 rgba(0,255,136,.08),inset 0 1px 0 rgba(0,255,136,.04);position:relative;z-index:10}
+#prompt-label{white-space:nowrap;user-select:none;display:flex;align-items:center}
+.pl-user{color:var(--green);font-weight:500}
+.pl-at{color:var(--muted)}
+.pl-host{color:var(--cyan);font-weight:500}
+.pl-sep{color:var(--muted)}
+.pl-path{color:var(--blue)}
+.pl-dollar{color:var(--green);margin-right:10px;font-weight:700}
+#cmd-input{flex:1;background:transparent;border:none;outline:none;color:var(--white);font-family:inherit;font-size:13.5px;caret-color:var(--green)}
+.line{margin:1.5px 0;white-space:pre-wrap;word-break:break-word}
+.line.prompt{color:var(--green);display:flex;align-items:flex-start;margin:3px 0}
+.line.prompt .p-label{white-space:nowrap}
+.line.prompt .cmd-text{color:var(--white);margin-left:10px}
+.line.empty{height:8px}
+.line.output{color:#5a8a6a}
+.line.error{color:var(--red)}
+.line.info{color:var(--cyan)}
+.line.accent{color:var(--yellow)}
+.line.white{color:var(--white)}
+.line.muted{color:var(--muted2);font-size:12px}
+.line.green{color:var(--green)}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2) 20%,var(--border2) 80%,transparent);margin:6px 0}
+@keyframes slideIn{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:translateX(0)}}
+.boot-line{animation:slideIn .18s ease forwards;opacity:0}
+.project-card{border:1px solid var(--border2);border-left:3px solid var(--green);padding:12px 16px;margin:5px 0;background:var(--green-faint);border-radius:0 6px 6px 0;position:relative;overflow:hidden;transition:border-color .2s,background .2s}
+.project-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,255,136,.04),transparent 60%);pointer-events:none}
+.project-card:hover{border-left-color:var(--cyan);background:rgba(0,229,255,.05)}
+.p-header{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.p-title{color:var(--yellow);font-weight:700;font-size:13px}
+.p-status{font-size:10px;padding:2px 8px;border-radius:20px;border:1px solid;font-weight:500;letter-spacing:.05em}
+.p-tech{color:var(--cyan);font-size:11.5px;margin-top:4px;opacity:.85}
+.p-desc{color:var(--white);font-size:12px;margin-top:5px;opacity:.8;line-height:1.5}
+.p-link{color:var(--green-dim);font-size:11.5px;margin-top:6px;text-decoration:none;display:inline-flex;align-items:center;gap:4px;transition:color .2s}
+.p-link:hover{color:var(--green);text-decoration:underline}
+.skills-section{margin:4px 0}
+.skill-row{display:flex;align-items:center;gap:12px;margin:5px 0}
+.skill-name{width:130px;color:var(--white);font-size:12px;flex-shrink:0}
+.skill-track{flex:1;height:5px;background:var(--border2);border-radius:10px;overflow:hidden}
+.skill-fill{height:100%;border-radius:10px;width:0%;transition:width 1s cubic-bezier(.4,0,.2,1)}
+.skill-pct{font-size:11px;color:var(--muted2);min-width:32px;text-align:right}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:7px;margin:6px 0}
+.tag{padding:3px 11px;border:1px solid var(--border2);border-radius:20px;font-size:11.5px;transition:border-color .2s,color .2s;cursor:default}
+.tag:hover{border-color:var(--green-dim);color:var(--green)}
+.tag.green{color:var(--green-dim);border-color:rgba(0,204,102,.3)}
+.tag.cyan{color:var(--cyan);border-color:rgba(0,229,255,.3)}
+.tag.yellow{color:var(--yellow);border-color:rgba(255,215,0,.3)}
+.tag.purple{color:var(--purple);border-color:rgba(199,146,234,.3)}
+.tag.blue{color:var(--blue);border-color:rgba(88,166,255,.3)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin:6px 0}
+.stat-card{border:1px solid var(--border2);border-radius:6px;padding:10px 14px;background:var(--green-faint);text-align:center}
+.stat-val{font-size:22px;font-weight:700;color:var(--green);line-height:1.2}
+.stat-lbl{font-size:10.5px;color:var(--muted2);margin-top:2px;letter-spacing:.05em}
+@media(max-width:600px){html{font-size:12px}#output{padding:14px 14px 8px}#input-area{padding:9px 14px 13px}.stat-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
-
 <div id="scan-flash"></div>
 <div id="vignette"></div>
 <div id="orb1"></div>
 <div id="orb2"></div>
-
 <div id="terminal-wrapper">
   <div id="titlebar">
     <div class="dots">
@@ -438,11 +113,9 @@ body::after {
       <span id="titlebar-text">andrew@portfolio: ~</span>
       <span class="tb-badge">bash</span>
     </div>
-    <div id="titlebar-right" id="tb-time"></div>
+    <div id="titlebar-right"></div>
   </div>
-
   <div id="output"></div>
-
   <div id="input-area">
     <span id="prompt-label">
       <span class="pl-user">andrew</span><span class="pl-at">@</span><span class="pl-host">portfolio</span><span class="pl-sep">:</span><span class="pl-path" id="cwd">~</span><span class="pl-dollar"> $</span>
@@ -450,48 +123,41 @@ body::after {
     <input id="cmd-input" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" autofocus />
   </div>
 </div>
-
 <script>
-const output   = document.getElementById('output');
-const input    = document.getElementById('cmd-input');
-const cwdEl    = document.getElementById('cwd');
-const tbText   = document.getElementById('titlebar-text');
-const tbRight  = document.getElementById('titlebar-right');
+
+// ── DOM refs ──
+const output  = document.getElementById('output');
+const input   = document.getElementById('cmd-input');
+const cwdEl   = document.getElementById('cwd');
+const tbText  = document.getElementById('titlebar-text');
+const tbRight = document.querySelector('#titlebar-right');
 
 let currentDir = '~';
 let cmdHistory = [];
 let histIdx    = -1;
 
-// ── Clock ──
-function updateClock() {
-  const now = new Date();
-  const h = String(now.getHours()).padStart(2,'0');
-  const m = String(now.getMinutes()).padStart(2,'0');
-  const s = String(now.getSeconds()).padStart(2,'0');
-  if (tbRight) tbRight.textContent = `${h}:${m}:${s}`;
+// clock
+function updateClock(){
+  const n=new Date(),h=String(n.getHours()).padStart(2,'0'),m=String(n.getMinutes()).padStart(2,'0'),s=String(n.getSeconds()).padStart(2,'0');
+  tbRight.textContent=`${h}:${m}:${s}`;
 }
-setInterval(updateClock, 1000);
-updateClock();
+setInterval(updateClock,1000); updateClock();
 
-// ── File system ──
-const FS = {
-  '~':                    ['about.txt','skills.txt','contact.txt','projects/','education/'],
-  '~/projects':           ['taskflow/','hms/','portfolio/'],
-  '~/projects/taskflow':  ['README.md','package.json','src/'],
-  '~/projects/hms':       ['README.md','src/','public/'],
-  '~/projects/portfolio': ['index.html','style.css'],
-  '~/education':          ['kisii_university.txt','courses.txt'],
+// ── Virtual FS ──
+const FS={
+  '~':['about.txt','skills.txt','contact.txt','projects/','education/'],
+  '~/projects':['taskflow/','hms/','portfolio/'],
+  '~/projects/taskflow':['README.md','package.json','src/'],
+  '~/projects/hms':['README.md','src/','public/'],
+  '~/projects/portfolio':['index.html','style.css'],
+  '~/education':['kisii_university.txt','courses.txt'],
 };
 
-const FILE_CONTENTS = {
-  'about.txt': `
-  ┌─────────────────────────────────────────────┐
-  │           ANDREW WEKESA — ABOUT ME          │
-  └─────────────────────────────────────────────┘
-
+const FILES={
+  'about.txt':`
   Name     :  Andrew Wekesa
   Role     :  Software Engineer (Year 2, BSc)
-  School   :  Kisii University, Kenya 🇰🇪
+  School   :  Kisii University, Kenya
   Reg No   :  IN16/00071/24
   Focus    :  Full-Stack · SaaS · APIs · Fintech
 
@@ -500,452 +166,321 @@ const FILE_CONTENTS = {
   M-Pesa integrations, and shipping real things.
 
   Currently building : HMS + TaskFlow
-  Goal               : Deploy. Monetize. Repeat.
-`,
-  'skills.txt': `
-  ┌─────────────────────────────────────────────┐
-  │              TECHNICAL SKILLS               │
-  └─────────────────────────────────────────────┘
-
-  Run the  skills  command for a visual overview.
-
+  Goal               : Deploy. Monetize. Repeat.`,
+  'skills.txt':`
   Languages  : JavaScript, HTML/CSS, SQL, Python
   Runtime    : Node.js / Express
   Databases  : MySQL, MongoDB
   Tools      : Git, GitHub, VS Code
   Kenyan APIs: M-Pesa Daraja, Africa's Talking
   Concepts   : REST, JWT, Schema Design, Indexing
-`,
-  'contact.txt': `
-  ┌─────────────────────────────────────────────┐
-  │               CONTACT ANDREW                │
-  └─────────────────────────────────────────────┘
 
+  Run the 'skills' command for a visual overview.`,
+  'contact.txt':`
   GitHub    :  github.com/andrew-wekesa
   Portfolio :  andrew-wekesa.github.io
-  Location  :  Kenya 🇰🇪
+  Location  :  Kenya
   Email     :  [available on request]
 
-  Open to:
-    ✦  Freelance web projects
-    ✦  SaaS collaboration
-    ✦  Kenyan fintech integrations
-    ✦  Internship opportunities
-`,
-  'kisii_university.txt': `
+  Open to: Freelance · SaaS collab · Fintech · Internships`,
+  'kisii_university.txt':`
   Kisii University
   School of Information Science & Technology
-  ─────────────────────────────────────────
   Degree  : BSc Software Engineering
-  Year    : 2nd Year (2024 – Present)
-  Reg No  : IN16/00071/24
-`,
-  'courses.txt': `
-  SOEN 202 — Advanced Database Management
-  SOEN 205 — Software Engineering Standards
-  SOEN 211 — Requirements Engineering
-  SOEN 212 — Software Design
-  SOEN 255 — Web Development
-  SOEN 260 — API Design
-`,
-  'README.md (taskflow)': `
-  TaskFlow — Project Management App
-  ──────────────────────────────────
+  Year    : 2nd Year (2024 - Present)
+  Reg No  : IN16/00071/24`,
+  'courses.txt':`
+  SOEN 202 - Advanced Database Management
+  SOEN 205 - Software Engineering Standards
+  SOEN 211 - Requirements Engineering
+  SOEN 212 - Software Design
+  SOEN 255 - Web Development
+  SOEN 260 - API Design`,
+  'README.md (taskflow)':`
+  TaskFlow - Project Management App
   Stack   : Node.js · Express · MySQL
   Auth    : SMS via Africa's Talking
   Session : JWT
   Feature : Activity log, task boards
-  Status  : In development
-  Deploy  : Railway (planned)
-`,
-  'README.md (hms)': `
-  HMS — Hospital Management System
-  ──────────────────────────────────
+  Status  : In development`,
+  'README.md (hms)':`
+  HMS - Hospital Management System
   Frontend : React (Cloudflare Pages)
   Live     : c215c0fa.hms-frontend-gs6.pages.dev
-  Modules  : Patients, Appointments, AI Checker
-             Analytics, Disease Library
-  Status   : Active development
-`,
+  Modules  : Patients, Appointments, AI Checker, Analytics
+  Status   : Active development`,
 };
 
-const PROJECTS = [
-  {
-    title:  'TaskFlow — Project Management App',
-    tech:   "Node.js · Express · MySQL · Africa's Talking · JWT",
-    desc:   'Full-stack project management app with SMS authentication, JWT sessions, and real-time activity logging.',
-    link:   'github.com/andrew-wekesa',
-    status: 'In Dev',
-    color:  'var(--yellow)',
-  },
-  {
-    title:  'HMS — Hospital Management System',
-    tech:   'React · Node.js · MySQL · Cloudflare Pages',
-    desc:   'Hospital dashboard with patient management, appointments, AI symptom checker, and disease analytics.',
-    link:   'c215c0fa.hms-frontend-gs6.pages.dev',
-    status: 'Active',
-    color:  'var(--cyan)',
-  },
-  {
-    title:  'Portfolio — Terminal CV',
-    tech:   'HTML · CSS · Vanilla JS',
-    desc:   'Personal portfolio with a dark terminal aesthetic. The one you are looking at right now.',
-    link:   'andrew-wekesa.github.io',
-    status: 'Live',
-    color:  'var(--green)',
-  },
+const PROJECTS=[
+  {title:'TaskFlow — Project Management App',tech:"Node.js · Express · MySQL · Africa's Talking · JWT",desc:'Full-stack project management app with SMS authentication, JWT sessions, and real-time activity logging.',link:'github.com/andrew-wekesa',status:'In Dev',color:'var(--yellow)'},
+  {title:'HMS — Hospital Management System',tech:'React · Node.js · MySQL · Cloudflare Pages',desc:'Hospital dashboard with patient management, appointments, AI symptom checker, and disease analytics.',link:'c215c0fa.hms-frontend-gs6.pages.dev',status:'Active',color:'var(--cyan)'},
+  {title:'Portfolio — Terminal CV',tech:'HTML · CSS · Vanilla JS',desc:'Personal portfolio with a dark terminal aesthetic. The one you are looking at right now.',link:'andrew-wekesa.github.io',status:'Live',color:'var(--green)'},
 ];
 
 // ── Helpers ──
-function esc(t) {
-  return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 
-function print(html, cls = 'output', delayMs = 0) {
-  const d = document.createElement('div');
-  d.className = `line ${cls}`;
-  d.innerHTML = html;
-  if (delayMs) {
-    d.style.animationDelay = delayMs + 'ms';
-    d.classList.add('boot-line');
-  }
+function print(html,cls='output'){
+  const d=document.createElement('div');
+  d.className='line '+cls;
+  d.innerHTML=html;
   output.appendChild(d);
-  output.scrollTop = output.scrollHeight;
-  return d;
+  output.scrollTop=output.scrollHeight;
 }
 
-function blank(h = 8) {
-  const d = document.createElement('div');
-  d.className = 'line empty';
-  d.style.height = h + 'px';
+function printDelay(html,cls,ms){
+  setTimeout(()=>print(html,cls),ms);
+}
+
+function blank(){
+  const d=document.createElement('div');
+  d.className='line empty';
   output.appendChild(d);
 }
 
-function hr() {
-  const d = document.createElement('div');
-  d.className = 'divider';
+function hr(){
+  const d=document.createElement('div');
+  d.className='divider';
   output.appendChild(d);
 }
 
-function printPrompt(cmd) {
-  const d = document.createElement('div');
-  d.className = 'line prompt';
-  d.innerHTML = `<span class="p-label"><span class="pl-user">andrew</span><span class="pl-at">@</span><span class="pl-host">portfolio</span><span class="pl-sep">:</span><span class="pl-path">${esc(currentDir)}</span><span class="pl-dollar"> $</span></span><span class="cmd-text">${esc(cmd)}</span>`;
+function printPrompt(cmd){
+  const d=document.createElement('div');
+  d.className='line prompt';
+  d.innerHTML=`<span class="p-label"><span class="pl-user">andrew</span><span class="pl-at">@</span><span class="pl-host">portfolio</span><span class="pl-sep">:</span><span class="pl-path">${esc(currentDir)}</span><span class="pl-dollar"> $</span></span><span class="cmd-text">${esc(cmd)}</span>`;
   output.appendChild(d);
-  output.scrollTop = output.scrollHeight;
+  output.scrollTop=output.scrollHeight;
 }
 
-function updateCwd() {
-  cwdEl.textContent = currentDir;
-  tbText.textContent = `andrew@portfolio: ${currentDir}`;
+function updateCwd(){
+  cwdEl.textContent=currentDir;
+  tbText.textContent=`andrew@portfolio: ${currentDir}`;
 }
 
-// ── Commands ──
-const COMMANDS = {
-  help:     cmdHelp,
-  whoami:   cmdWhoami,
-  ls:       cmdLs,
-  cat:      cmdCat,
-  cd:       cmdCd,
-  pwd:      cmdPwd,
-  projects: cmdProjects,
-  skills:   cmdSkills,
-  contact:  cmdContact,
-  github:   cmdGithub,
-  neofetch: cmdNeofetch,
-  stats:    cmdStats,
-  clear:    () => { output.innerHTML = ''; },
-  date:     () => print(new Date().toLocaleString('en-KE', {timeZone:'Africa/Nairobi', hour12:false}), 'info'),
-  echo:     (a) => print(esc(a.join(' ')), 'white'),
-  history:  cmdHistoryCmd,
-  exit:     () => print(`exit: Nice try. You can't leave the matrix. 😄`, 'error'),
-  sudo:     () => print('sudo: andrew is not in the sudoers file. This incident will be reported.', 'error'),
-  rm:       (a) => {
-    if (a.includes('-rf')) print('Nice try. The portfolio stays. 🛡️', 'error');
-    else print('rm: permission denied', 'error');
-  },
-  uname:    () => print('Linux portfolio 5.15.0-1 #1 SMP x86_64 GNU/Linux', 'output'),
-  man:      (a) => {
-    if (!a[0]) { print('What manual page do you want?', 'error'); return; }
-    if (COMMANDS[a[0]]) print(`${a[0]}: built-in command. Type <span style="color:var(--green)">help</span> for usage.`, 'info');
-    else print(`No manual entry for ${esc(a[0])}`, 'error');
-  },
-};
-</script>
-
-<script>
-function cmdHelp() {
+// ── Command functions ──
+function cmdHelp(){
   blank();
-  print(`  <span style="color:var(--yellow);font-weight:700">┌─ COMMANDS ──────────────────────────────────────────┐</span>`);
-  blank(4);
-  const cols = [
-    [['whoami','Who is Andrew?'],       ['projects','All projects with details']],
-    [['skills','Visual skills chart'],  ['contact','Contact & links']],
-    [['ls [path]','List directory'],    ['cat [file]','Read a file']],
-    [['cd [dir]','Change directory'],   ['pwd','Print working directory']],
-    [['stats','Quick stats overview'],  ['neofetch','System info']],
-    [['github','Open GitHub profile'],  ['date','Current date/time']],
-    [['history','Command history'],     ['clear','Clear terminal']],
+  print(`  <span style="color:var(--yellow);font-weight:700">AVAILABLE COMMANDS</span>`,'white');
+  blank();
+  const cmds=[
+    ['whoami',   'Who is Andrew?'],
+    ['projects', 'All projects with details'],
+    ['skills',   'Visual skills overview'],
+    ['contact',  'Contact & links'],
+    ['stats',    'Quick stats'],
+    ['neofetch', 'System info'],
+    ['ls',       'List directory (try: ls projects)'],
+    ['cat',      'Read a file (try: cat about.txt)'],
+    ['cd',       'Change directory (try: cd projects)'],
+    ['pwd',      'Print working directory'],
+    ['github',   'Open GitHub profile'],
+    ['date',     'Current date/time'],
+    ['history',  'Command history'],
+    ['clear',    'Clear terminal'],
   ];
-  cols.forEach(([a, b]) => {
-    const fmt = ([c, d]) =>
-      `<span style="color:var(--green)">${c.padEnd(14)}</span><span style="color:var(--muted2)">${d}</span>`;
-    print(`  ${fmt(a)}    ${fmt(b)}`);
+  cmds.forEach(([c,d])=>{
+    print(`  <span style="color:var(--green);display:inline-block;min-width:120px">${c}</span><span style="color:var(--muted2)">${d}</span>`);
   });
-  blank(4);
-  print(`  <span style="color:var(--yellow);font-weight:700">└─────────────────────────────────────────────────────┘</span>`);
-  blank(4);
-  print(`  <span style="color:var(--muted2)">↑↓ history  ·  Tab autocomplete  ·  Ctrl+L clear  ·  Ctrl+C cancel</span>`, 'muted');
+  blank();
+  print(`  <span style="color:var(--muted2)">Tip: use arrow keys for history, Tab to autocomplete</span>`,'muted');
   blank();
 }
 
-function cmdWhoami() {
+function cmdWhoami(){
   blank();
-  const art = [
-    `<span style="color:var(--green)">  ░█████╗░███╗░░██╗██████╗░██████╗░███████╗░██╗░░░░░░░██╗</span>`,
-    `<span style="color:var(--green)">  ██╔══██╗████╗░██║██╔══██╗██╔══██╗██╔════╝░██║░░██╗░░██║</span>`,
-    `<span style="color:var(--green)">  ███████║██╔██╗██║██║░░██║██████╔╝█████╗░░░╚██╗████╗██╔╝</span>`,
-    `<span style="color:var(--green)">  ██╔══██║██║╚████║██║░░██║██╔══██╗██╔══╝░░░░████╔═████║░</span>`,
-    `<span style="color:var(--green)">  ██║░░██║██║░╚███║██████╔╝██║░░██║███████╗░░╚██╔╝░╚██╔╝░</span>`,
-    `<span style="color:var(--green)">  ╚═╝░░╚═╝╚═╝░░╚══╝╚═════╝░╚═╝░░╚═╝╚══════╝░░╚═╝░░░╚═╝░░</span>`,
+  const art=[
+    `  <span style="color:var(--green)"> █████╗ ███╗  ██╗██████╗ ██████╗ ███████╗██╗    ██╗</span>`,
+    `  <span style="color:var(--green)">██╔══██╗████╗ ██║██╔══██╗██╔══██╗██╔════╝██║    ██║</span>`,
+    `  <span style="color:var(--green)">███████║██╔██╗██║██║  ██║██████╔╝█████╗  ██║ █╗ ██║</span>`,
+    `  <span style="color:var(--green)">██╔══██║██║╚████║██║  ██║██╔══██╗██╔══╝  ██║███╗██║</span>`,
+    `  <span style="color:var(--green)">██║  ██║██║ ╚███║██████╔╝██║  ██║███████╗╚███╔███╔╝</span>`,
+    `  <span style="color:var(--green)">╚═╝  ╚═╝╚═╝  ╚══╝╚═════╝ ╚═╝  ╚═╝╚══════╝ ╚══╝╚══╝</span>`,
   ];
-  art.forEach(l => print(l, 'white'));
+  art.forEach(l=>print(l,'white'));
   blank();
-  const rows = [
-    ['Name',     'Andrew Wekesa'],
-    ['Role',     'Software Engineer · Year 2 BSc'],
-    ['School',   'Kisii University, Kenya 🇰🇪'],
-    ['Reg No',   'IN16/00071/24'],
-    ['Stack',    'Node.js · React · MySQL · MongoDB'],
-    ['APIs',     "M-Pesa Daraja · Africa's Talking"],
-    ['Building', 'TaskFlow · HMS · Portfolio'],
-    ['Goal',     'Ship products. Monetize. Repeat. 🚀'],
-  ];
-  rows.forEach(([k, v]) => {
+  [
+    ['Name',    'Andrew Wekesa'],
+    ['Role',    'Software Engineer · Year 2 BSc'],
+    ['School',  'Kisii University, Kenya 🇰🇪'],
+    ['Reg No',  'IN16/00071/24'],
+    ['Stack',   'Node.js · React · MySQL · MongoDB'],
+    ['APIs',    "M-Pesa Daraja · Africa's Talking"],
+    ['Building','TaskFlow · HMS · Portfolio'],
+    ['Goal',    'Ship products. Monetize. Repeat. 🚀'],
+  ].forEach(([k,v])=>{
     print(`  <span style="color:var(--cyan);display:inline-block;min-width:90px">${k}</span><span style="color:var(--muted2)"> ·  </span><span style="color:var(--white)">${v}</span>`);
   });
   blank();
 }
 
-function cmdLs(args) {
-  let target = args[0] ? args[0].replace(/\/$/, '') : currentDir;
-  if (target === '.') target = currentDir;
-  const aliases = { 'projects':'~/projects', './projects':'~/projects', 'education':'~/education', './education':'~/education' };
-  if (aliases[target]) target = aliases[target];
-  else if (!target.startsWith('~')) target = currentDir + '/' + target;
-  target = target.replace(/\/\//g, '/');
-
-  const entries = FS[target];
-  if (!entries) { print(`ls: cannot access '<span style="color:var(--yellow)">${esc(args[0]||'.')}</span>': No such file or directory`, 'error'); return; }
-
-  let out = '';
-  entries.filter(e => e.endsWith('/')).forEach(d => {
-    out += `<span style="color:var(--blue);font-weight:600">${d}</span>  `;
+function cmdLs(args){
+  let target=args[0]?args[0].replace(/\/$/,''):currentDir;
+  if(target==='.')target=currentDir;
+  const aliases={'projects':'~/projects','./projects':'~/projects','education':'~/education','./education':'~/education'};
+  if(aliases[target])target=aliases[target];
+  else if(!target.startsWith('~'))target=currentDir+'/'+target;
+  target=target.replace(/\/\//g,'/');
+  const entries=FS[target];
+  if(!entries){print(`ls: cannot access '${esc(args[0]||'.')}': No such file or directory`,'error');return;}
+  blank();
+  let out='';
+  entries.filter(e=>e.endsWith('/')).forEach(d=>{out+=`<span style="color:var(--blue);font-weight:600">${d}</span>  `;});
+  entries.filter(e=>!e.endsWith('/')).forEach(f=>{
+    const ext=f.split('.').pop();
+    const col=ext==='md'?'var(--cyan)':ext==='json'?'var(--yellow)':ext==='html'||ext==='css'?'var(--purple)':'var(--green)';
+    out+=`<span style="color:${col}">${f}</span>  `;
   });
-  entries.filter(e => !e.endsWith('/')).forEach(f => {
-    const ext = f.split('.').pop();
-    const color = ext === 'md' ? 'var(--cyan)' : ext === 'json' ? 'var(--yellow)' : ext === 'html' || ext === 'css' ? 'var(--purple)' : 'var(--green)';
-    out += `<span style="color:${color}">${f}</span>  `;
-  });
-  blank(4);
-  print(out || '(empty)');
-  blank(4);
+  print(out||'(empty)');
+  blank();
 }
 
-function cmdCat(args) {
-  if (!args[0]) { print('cat: missing operand', 'error'); return; }
-  let content = FILE_CONTENTS[args[0]];
-  if (!content && args[0] === 'README.md') {
-    if (currentDir.includes('taskflow')) content = FILE_CONTENTS['README.md (taskflow)'];
-    else if (currentDir.includes('hms'))  content = FILE_CONTENTS['README.md (hms)'];
+function cmdCat(args){
+  if(!args[0]){print('cat: missing operand','error');return;}
+  let content=FILES[args[0]];
+  if(!content&&args[0]==='README.md'){
+    if(currentDir.includes('taskflow'))content=FILES['README.md (taskflow)'];
+    else if(currentDir.includes('hms'))content=FILES['README.md (hms)'];
   }
-  if (!content) { print(`cat: <span style="color:var(--yellow)">${esc(args[0])}</span>: No such file or directory`, 'error'); return; }
-  blank(4);
-  content.trim().split('\n').forEach(l => {
-    const cls = (l.includes('┌') || l.includes('┐') || l.includes('└') || l.includes('┘') || l.includes('│')) ? 'accent'
-              : l.includes('──') ? 'muted'
-              : l.trim().startsWith('✦') ? 'green'
-              : 'white';
-    print(esc(l), cls);
-  });
+  if(!content){print(`cat: ${esc(args[0])}: No such file or directory`,'error');return;}
+  blank();
+  content.trim().split('\n').forEach(l=>print(esc(l),'white'));
   blank();
 }
 
-function cmdCd(args) {
-  if (!args[0] || args[0] === '~') { currentDir = '~'; updateCwd(); return; }
-  const t = args[0].replace(/\/$/, '');
-  if (t === '..') { currentDir = goUp(); updateCwd(); return; }
-  const map = {
-    'projects': '~/projects', './projects': '~/projects',
-    'education': '~/education', './education': '~/education',
-    'taskflow': currentDir.includes('projects') ? '~/projects/taskflow' : null,
-    'hms':      currentDir.includes('projects') ? '~/projects/hms'      : null,
-    'portfolio':currentDir.includes('projects') ? '~/projects/portfolio': null,
+function cmdCd(args){
+  if(!args[0]||args[0]==='~'){currentDir='~';updateCwd();return;}
+  const t=args[0].replace(/\/$/,'');
+  if(t==='..'){currentDir=goUp();updateCwd();return;}
+  const map={
+    'projects':'~/projects','./projects':'~/projects',
+    'education':'~/education','./education':'~/education',
+    'taskflow':currentDir.includes('projects')?'~/projects/taskflow':null,
+    'hms':currentDir.includes('projects')?'~/projects/hms':null,
+    'portfolio':currentDir.includes('projects')?'~/projects/portfolio':null,
   };
-  const resolved = map[t] || (t.startsWith('~/') ? t : null);
-  if (resolved && FS[resolved]) { currentDir = resolved; updateCwd(); }
-  else print(`cd: <span style="color:var(--yellow)">${esc(args[0])}</span>: No such file or directory`, 'error');
+  const resolved=map[t]||(t.startsWith('~/')?t:null);
+  if(resolved&&FS[resolved]){currentDir=resolved;updateCwd();}
+  else print(`cd: ${esc(args[0])}: No such file or directory`,'error');
 }
 
-function goUp() {
-  if (currentDir === '~') return '~';
-  const p = currentDir.split('/');
-  p.pop();
-  return p.join('/') || '~';
+function goUp(){
+  if(currentDir==='~')return '~';
+  const p=currentDir.split('/');p.pop();
+  return p.join('/')||'~';
 }
 
-function cmdPwd() { print('/home/' + currentDir.replace('~', 'andrew'), 'output'); }
+function cmdPwd(){print('/home/'+currentDir.replace('~','andrew'));}
 
-function cmdProjects() {
+function cmdProjects(){
   blank();
-  print(`  <span style="color:var(--yellow);font-weight:700">[ PROJECTS ]</span>  <span style="color:var(--muted2)">${PROJECTS.length} found</span>`, 'white');
-  blank(6);
-  PROJECTS.forEach(p => {
-    const card = document.createElement('div');
-    card.className = 'project-card';
-    card.innerHTML = `
+  print(`  <span style="color:var(--yellow);font-weight:700">[ PROJECTS ]</span>  <span style="color:var(--muted2)">${PROJECTS.length} found</span>`,'white');
+  blank();
+  PROJECTS.forEach(p=>{
+    const card=document.createElement('div');
+    card.className='project-card';
+    card.innerHTML=`
       <div class="p-header">
         <span class="p-title">${p.title}</span>
         <span class="p-status" style="color:${p.color};border-color:${p.color}">${p.status}</span>
       </div>
       <div class="p-tech">${p.tech}</div>
       <div class="p-desc">${p.desc}</div>
-      <a class="p-link" href="https://${p.link}" target="_blank" rel="noopener">↗ ${p.link}</a>
-    `;
+      <a class="p-link" href="https://${p.link}" target="_blank" rel="noopener">↗ ${p.link}</a>`;
     output.appendChild(card);
   });
   blank();
-  output.scrollTop = output.scrollHeight;
+  output.scrollTop=output.scrollHeight;
 }
 
-function cmdSkills() {
+function cmdSkills(){
   blank();
-  print(`  <span style="color:var(--yellow);font-weight:700">[ SKILLS ]</span>`, 'white');
-  blank(6);
-
-  const bars = [
-    ['HTML / CSS',    95, 'linear-gradient(90deg, var(--green), var(--cyan))'],
-    ['JavaScript',    88, 'linear-gradient(90deg, var(--yellow), var(--green))'],
-    ['Node.js',       82, 'linear-gradient(90deg, var(--green), var(--green-dim))'],
-    ['MySQL',         82, 'linear-gradient(90deg, var(--blue), var(--cyan))'],
-    ['Git / GitHub',  85, 'linear-gradient(90deg, var(--purple), var(--blue))'],
-    ['MongoDB',       70, 'linear-gradient(90deg, var(--green-dim), var(--cyan))'],
-    ['Python',        58, 'linear-gradient(90deg, var(--yellow), var(--green-dim))'],
+  print(`  <span style="color:var(--yellow);font-weight:700">[ SKILLS ]</span>`,'white');
+  blank();
+  const bars=[
+    ['HTML / CSS',   95,'linear-gradient(90deg,var(--green),var(--cyan))'],
+    ['JavaScript',   88,'linear-gradient(90deg,var(--yellow),var(--green))'],
+    ['Node.js',      82,'linear-gradient(90deg,var(--green),var(--green-dim))'],
+    ['MySQL',        82,'linear-gradient(90deg,var(--blue),var(--cyan))'],
+    ['Git / GitHub', 85,'linear-gradient(90deg,var(--purple),var(--blue))'],
+    ['MongoDB',      70,'linear-gradient(90deg,var(--green-dim),var(--cyan))'],
+    ['Python',       58,'linear-gradient(90deg,var(--yellow),var(--green-dim))'],
   ];
-
-  const section = document.createElement('div');
-  section.className = 'skills-section';
-  bars.forEach(([name, pct, grad]) => {
-    const row = document.createElement('div');
-    row.className = 'skill-row';
-    row.innerHTML = `
-      <div class="skill-name">${name}</div>
-      <div class="skill-track"><div class="skill-fill" data-w="${pct}" style="background:${grad}"></div></div>
-      <div class="skill-pct">${pct}%</div>
-    `;
-    section.appendChild(row);
+  const sec=document.createElement('div');
+  sec.className='skills-section';
+  bars.forEach(([name,pct,grad])=>{
+    const row=document.createElement('div');
+    row.className='skill-row';
+    row.innerHTML=`<div class="skill-name">${name}</div><div class="skill-track"><div class="skill-fill" data-w="${pct}" style="background:${grad}"></div></div><div class="skill-pct">${pct}%</div>`;
+    sec.appendChild(row);
   });
-  output.appendChild(section);
-  setTimeout(() => {
-    section.querySelectorAll('.skill-fill').forEach(b => b.style.width = b.dataset.w + '%');
-  }, 60);
-
-  blank(8);
+  output.appendChild(sec);
+  setTimeout(()=>sec.querySelectorAll('.skill-fill').forEach(b=>b.style.width=b.dataset.w+'%'),60);
+  blank();
   print(`  <span style="color:var(--muted2)">Kenyan APIs</span>`);
-  blank(4);
-  const tags1 = document.createElement('div');
-  tags1.className = 'tag-cloud';
-  tags1.style.marginLeft = '2px';
-  ["M-Pesa Daraja","Africa's Talking","SMS Auth","STK Push"].forEach(t => {
-    const s = document.createElement('span');
-    s.className = 'tag cyan';
-    s.textContent = t;
-    tags1.appendChild(s);
+  const t1=document.createElement('div');t1.className='tag-cloud';t1.style.marginLeft='2px';
+  ["M-Pesa Daraja","Africa's Talking","SMS Auth","STK Push"].forEach(t=>{
+    const s=document.createElement('span');s.className='tag cyan';s.textContent=t;t1.appendChild(s);
   });
-  output.appendChild(tags1);
-
-  blank(6);
-  print(`  <span style="color:var(--muted2)">Concepts & Tools</span>`);
-  blank(4);
-  const tags2 = document.createElement('div');
-  tags2.className = 'tag-cloud';
-  tags2.style.marginLeft = '2px';
-  const concepts = [
-    {t:'REST API',c:'green'},{t:'JWT',c:'green'},{t:'Schema Design',c:'blue'},
-    {t:'Indexing',c:'blue'},{t:'MVC',c:'purple'},{t:'SaaS',c:'yellow'},
-    {t:'Req. Engineering',c:'purple'},{t:'VS Code',c:'blue'},
-  ];
-  concepts.forEach(({t, c}) => {
-    const s = document.createElement('span');
-    s.className = `tag ${c}`;
-    s.textContent = t;
-    tags2.appendChild(s);
-  });
-  output.appendChild(tags2);
+  output.appendChild(t1);
   blank();
-  output.scrollTop = output.scrollHeight;
+  print(`  <span style="color:var(--muted2)">Concepts & Tools</span>`);
+  const t2=document.createElement('div');t2.className='tag-cloud';t2.style.marginLeft='2px';
+  [{t:'REST API',c:'green'},{t:'JWT',c:'green'},{t:'Schema Design',c:'blue'},{t:'Indexing',c:'blue'},{t:'MVC',c:'purple'},{t:'SaaS',c:'yellow'},{t:'Req. Engineering',c:'purple'},{t:'VS Code',c:'blue'}].forEach(({t,c})=>{
+    const s=document.createElement('span');s.className=`tag ${c}`;s.textContent=t;t2.appendChild(s);
+  });
+  output.appendChild(t2);
+  blank();
+  output.scrollTop=output.scrollHeight;
 }
 
-function cmdContact() {
+function cmdContact(){
   blank();
-  print(`  <span style="color:var(--yellow);font-weight:700">[ CONTACT ]</span>`, 'white');
-  blank(6);
-  const rows = [
-    ['GitHub',    'github.com/andrew-wekesa',          'var(--green)'],
-    ['Portfolio', 'andrew-wekesa.github.io',            'var(--cyan)'],
-    ['Location',  'Kenya 🇰🇪',                          'var(--white)'],
-    ['Email',     '[available on request]',             'var(--muted2)'],
-  ];
-  rows.forEach(([k, v, c]) => {
+  print(`  <span style="color:var(--yellow);font-weight:700">[ CONTACT ]</span>`,'white');
+  blank();
+  [
+    ['GitHub',   'github.com/andrew-wekesa',  'var(--green)'],
+    ['Portfolio','andrew-wekesa.github.io',   'var(--cyan)'],
+    ['Location', 'Kenya 🇰🇪',                 'var(--white)'],
+    ['Email',    '[available on request]',    'var(--muted2)'],
+  ].forEach(([k,v,c])=>{
     print(`  <span style="color:var(--muted2);display:inline-block;min-width:100px">${k}</span><span style="color:${c}">${v}</span>`);
   });
-  blank(6);
-  print(`  <span style="color:var(--muted2)">Open to:</span>`);
-  ['Freelance web projects','SaaS collaboration','Kenyan fintech integrations','Internship opportunities'].forEach(i => {
+  blank();
+  ['Freelance web projects','SaaS collaboration','Kenyan fintech integrations','Internship opportunities'].forEach(i=>{
     print(`  <span style="color:var(--green)">✦</span>  <span style="color:var(--white)">${i}</span>`);
   });
-  blank(4);
-  print(`  Type <span style="color:var(--green)">github</span> to open GitHub in a new tab.`, 'muted');
+  blank();
+  print(`  Type <span style="color:var(--green)">github</span> to open GitHub in a new tab.`,'muted');
   blank();
 }
 
-function cmdGithub() {
-  print(`  Opening <span style="color:var(--green)">github.com/andrew-wekesa</span> ...`, 'info');
-  setTimeout(() => window.open('https://github.com/andrew-wekesa', '_blank'), 300);
+function cmdGithub(){
+  print(`  Opening github.com/andrew-wekesa ...`,'info');
+  setTimeout(()=>window.open('https://github.com/andrew-wekesa','_blank'),300);
 }
 
-function cmdStats() {
+function cmdStats(){
   blank();
-  print(`  <span style="color:var(--yellow);font-weight:700">[ QUICK STATS ]</span>`, 'white');
-  blank(6);
-  const grid = document.createElement('div');
-  grid.className = 'stat-grid';
-  const stats = [
-    ['3',    'PROJECTS'],
-    ['2+',   'YEARS CODING'],
-    ['5+',   'TECHNOLOGIES'],
-    ['2',    'KENYAN APIs'],
-    ['Y2',   'BSc YEAR'],
-    ['🇰🇪',  'KENYA'],
-  ];
-  stats.forEach(([val, lbl]) => {
-    const c = document.createElement('div');
-    c.className = 'stat-card';
-    c.innerHTML = `<div class="stat-val">${val}</div><div class="stat-lbl">${lbl}</div>`;
+  print(`  <span style="color:var(--yellow);font-weight:700">[ QUICK STATS ]</span>`,'white');
+  blank();
+  const grid=document.createElement('div');grid.className='stat-grid';
+  [['3','PROJECTS'],['2+','YEARS CODING'],['5+','TECHNOLOGIES'],['2','KENYAN APIs'],['Y2','BSc YEAR'],['🇰🇪','KENYA']].forEach(([val,lbl])=>{
+    const c=document.createElement('div');c.className='stat-card';
+    c.innerHTML=`<div class="stat-val">${val}</div><div class="stat-lbl">${lbl}</div>`;
     grid.appendChild(c);
   });
   output.appendChild(grid);
   blank();
-  output.scrollTop = output.scrollHeight;
+  output.scrollTop=output.scrollHeight;
 }
 
-function cmdNeofetch() {
+function cmdNeofetch(){
   blank();
-  const lines = [
+  [
     `  <span style="color:var(--green)">  ██████╗ </span>   <span style="color:var(--yellow)">andrew</span><span style="color:var(--muted2)">@</span><span style="color:var(--cyan)">portfolio</span>`,
     `  <span style="color:var(--green)"> ██╔════╝ </span>   <span style="color:var(--muted2)">─────────────────────────</span>`,
     `  <span style="color:var(--green)"> ██║  ███╗</span>   <span style="color:var(--cyan)">OS</span>       <span style="color:var(--white)">Windows 11 + WSL2</span>`,
-    `  <span style="color:var(--green)"> ██║   ██║</span>   <span style="color:var(--cyan)">Shell</span>    <span style="color:var(--white)">Bash (Git Bash / MINGW64)</span>`,
+    `  <span style="color:var(--green)"> ██║   ██║</span>   <span style="color:var(--cyan)">Shell</span>    <span style="color:var(--white)">Bash</span>`,
     `  <span style="color:var(--green)"> ╚██████╔╝</span>   <span style="color:var(--cyan)">Editor</span>   <span style="color:var(--white)">VS Code</span>`,
     `  <span style="color:var(--green)">  ╚═════╝ </span>   <span style="color:var(--cyan)">Runtime</span>  <span style="color:var(--white)">Node.js</span>`,
     `           <span style="color:var(--cyan)">DB</span>       <span style="color:var(--white)">MySQL · MongoDB</span>`,
@@ -953,112 +488,102 @@ function cmdNeofetch() {
     `           <span style="color:var(--cyan)">School</span>   <span style="color:var(--white)">Kisii University</span>`,
     `           <span style="color:var(--cyan)">Degree</span>   <span style="color:var(--white)">BSc Software Engineering</span>`,
     ``,
-    `  <span style="background:#ff5555;color:#ff5555">▓▓▓</span><span style="background:#ffd700;color:#ffd700">▓▓▓</span><span style="background:#00ff88;color:#00ff88">▓▓▓</span><span style="background:#58a6ff;color:#58a6ff">▓▓▓</span><span style="background:#00e5ff;color:#00e5ff">▓▓▓</span><span style="background:#c792ea;color:#c792ea">▓▓▓</span><span style="background:#e6edf3;color:#e6edf3">▓▓▓</span>`,
-  ];
-  lines.forEach(l => print(l, 'white'));
+    `  <span style="background:#ff5555;color:#ff5555">▓▓▓</span><span style="background:#ffd700;color:#ffd700">▓▓▓</span><span style="background:#00ff88;color:#00ff88">▓▓▓</span><span style="background:#58a6ff;color:#58a6ff">▓▓▓</span><span style="background:#00e5ff;color:#00e5ff">▓▓▓</span><span style="background:#c792ea;color:#c792ea">▓▓▓</span>`,
+  ].forEach(l=>print(l,'white'));
   blank();
 }
 
-function cmdHistoryCmd() {
-  if (!cmdHistory.length) { print('  No history yet.', 'muted'); return; }
-  blank(4);
-  [...cmdHistory].reverse().forEach((c, i) => {
-    print(`  <span style="color:var(--muted2)">${String(i+1).padStart(3)}</span>  <span style="color:var(--white)">${esc(c)}</span>`, 'muted');
+function cmdHistoryCmd(){
+  if(!cmdHistory.length){print('  No history yet.','muted');return;}
+  blank();
+  [...cmdHistory].reverse().forEach((c,i)=>{
+    print(`  <span style="color:var(--muted2)">${String(i+1).padStart(3)}</span>  <span style="color:var(--white)">${esc(c)}</span>`,'muted');
   });
   blank();
 }
 
+// ── Command map (defined AFTER all functions) ──
+const COMMANDS={
+  help:     ()=>cmdHelp(),
+  whoami:   ()=>cmdWhoami(),
+  ls:       (a)=>cmdLs(a),
+  cat:      (a)=>cmdCat(a),
+  cd:       (a)=>cmdCd(a),
+  pwd:      ()=>cmdPwd(),
+  projects: ()=>cmdProjects(),
+  skills:   ()=>cmdSkills(),
+  contact:  ()=>cmdContact(),
+  github:   ()=>cmdGithub(),
+  neofetch: ()=>cmdNeofetch(),
+  stats:    ()=>cmdStats(),
+  history:  ()=>cmdHistoryCmd(),
+  clear:    ()=>{output.innerHTML=''},
+  date:     ()=>print(new Date().toLocaleString('en-KE',{timeZone:'Africa/Nairobi',hour12:false}),'info'),
+  echo:     (a)=>print(esc(a.join(' ')),'white'),
+  exit:     ()=>print("exit: Nice try. You can't leave the matrix. 😄",'error'),
+  sudo:     ()=>print('sudo: andrew is not in the sudoers file. This incident will be reported.','error'),
+  rm:       (a)=>print(a.includes('-rf')?'Nice try. The portfolio stays. 🛡️':'rm: permission denied','error'),
+  uname:    ()=>print('Linux portfolio 5.15.0-1 #1 SMP x86_64 GNU/Linux'),
+};
+
 // ── Run ──
-function run(cmd) {
-  cmd = cmd.trim();
-  if (!cmd) return;
+function run(cmd){
+  cmd=cmd.trim();
+  if(!cmd)return;
   cmdHistory.unshift(cmd);
-  histIdx = -1;
+  histIdx=-1;
   printPrompt(cmd);
-  const parts = cmd.split(/\s+/);
-  const name  = parts[0].toLowerCase();
-  const args  = parts.slice(1);
-  if (COMMANDS[name]) COMMANDS[name](args);
-  else print(`  bash: <span style="color:var(--yellow)">${esc(name)}</span>: command not found — type <span style="color:var(--green)">help</span> for available commands`, 'error');
-  blank(4);
+  const parts=cmd.split(/\s+/);
+  const name=parts[0].toLowerCase();
+  const args=parts.slice(1);
+  if(COMMANDS[name])COMMANDS[name](args);
+  else print(`  bash: <span style="color:var(--yellow)">${esc(name)}</span>: command not found — type <span style="color:var(--green)">help</span> for available commands`,'error');
+  blank();
 }
 
-// ── Input ──
-input.addEventListener('keydown', e => {
-  if (e.key === 'Enter') {
-    const v = input.value; input.value = ''; run(v);
-  } else if (e.key === 'ArrowUp') {
-    e.preventDefault();
-    if (histIdx < cmdHistory.length - 1) histIdx++;
-    input.value = cmdHistory[histIdx] || '';
-  } else if (e.key === 'ArrowDown') {
-    e.preventDefault();
-    if (histIdx > 0) histIdx--;
-    else { histIdx = -1; input.value = ''; return; }
-    input.value = cmdHistory[histIdx] || '';
-  } else if (e.key === 'Tab') {
-    e.preventDefault();
-    const parts = input.value.split(' ');
-    const partial = parts[parts.length - 1];
-    if (parts.length === 1) {
-      const match = Object.keys(COMMANDS).find(c => c.startsWith(partial));
-      if (match) input.value = match;
-    }
-  } else if (e.key === 'l' && e.ctrlKey) {
-    e.preventDefault(); output.innerHTML = '';
-  } else if (e.key === 'c' && e.ctrlKey) {
-    e.preventDefault();
-    printPrompt(input.value + '^C');
-    input.value = '';
-    blank(4);
-  }
+// ── Input handling ──
+input.addEventListener('keydown',e=>{
+  if(e.key==='Enter'){const v=input.value;input.value='';run(v);}
+  else if(e.key==='ArrowUp'){e.preventDefault();if(histIdx<cmdHistory.length-1)histIdx++;input.value=cmdHistory[histIdx]||'';}
+  else if(e.key==='ArrowDown'){e.preventDefault();if(histIdx>0)histIdx--;else{histIdx=-1;input.value='';return;}input.value=cmdHistory[histIdx]||'';}
+  else if(e.key==='Tab'){e.preventDefault();const parts=input.value.split(' ');const partial=parts[parts.length-1];if(parts.length===1){const m=Object.keys(COMMANDS).find(c=>c.startsWith(partial));if(m)input.value=m;}}
+  else if(e.key==='l'&&e.ctrlKey){e.preventDefault();output.innerHTML='';}
+  else if(e.key==='c'&&e.ctrlKey){e.preventDefault();printPrompt(input.value+'^C');input.value='';blank();}
 });
 
-document.getElementById('terminal-wrapper').addEventListener('click', () => input.focus());
+document.getElementById('terminal-wrapper').addEventListener('click',()=>input.focus());
 
 // ── Boot sequence ──
-function boot() {
-  const t = (fn, ms) => setTimeout(fn, ms);
-
-  const bios = [
-    [0,   'muted', '  BIOS v2.4.1 — Initializing hardware...'],
+function boot(){
+  const t=(fn,ms)=>setTimeout(fn,ms);
+  const bios=[
+    [0,   'muted', '  BIOS v2.4.1 — Initializing...'],
     [180, 'muted', '  Checking memory... <span style="color:var(--green)">OK</span>'],
     [320, 'muted', '  Loading kernel modules...'],
     [460, 'output','  <span style="color:var(--green)">[  OK  ]</span> Started Andrew Portfolio Service'],
     [580, 'output','  <span style="color:var(--green)">[  OK  ]</span> Mounted /home/andrew'],
-    [680, 'output','  <span style="color:var(--green)">[  OK  ]</span> Network interface up'],
-    [760, 'output','  <span style="color:var(--green)">[  OK  ]</span> SSH daemon started'],
+    [700, 'output','  <span style="color:var(--green)">[  OK  ]</span> Network interface up'],
   ];
-
-  bios.forEach(([d, cls, txt]) => t(() => print(txt, cls, 0), d));
-
-  t(() => {
-    blank();
-    hr();
-    blank();
-  }, 900);
-
-  const art = [
-    `<span style="color:var(--green)">  ██████╗  ██████╗ ██████╗ ████████╗███████╗ ██████╗ ██╗     ██╗ ██████╗ </span>`,
-    `<span style="color:var(--green)">  ██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██║     ██║██╔═══██╗</span>`,
-    `<span style="color:var(--green)">  ██████╔╝██║   ██║██████╔╝   ██║   █████╗  ██║   ██║██║     ██║██║   ██║</span>`,
-    `<span style="color:var(--green)">  ██╔═══╝ ██║   ██║██╔══██╗   ██║   ██╔══╝  ██║   ██║██║     ██║██║   ██║</span>`,
-    `<span style="color:var(--green)">  ██║     ╚██████╔╝██║  ██║   ██║   ██║     ╚██████╔╝███████╗██║╚██████╔╝</span>`,
-    `<span style="color:var(--green)">  ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚══════╝╚═╝ ╚═════╝</span>`,
+  bios.forEach(([d,cls,txt])=>t(()=>print(txt,cls),d));
+  t(()=>{blank();hr();blank();},820);
+  const art=[
+    `  <span style="color:var(--green)">  ██████╗  ██████╗ ██████╗ ████████╗███████╗ ██████╗ ██╗     ██╗ ██████╗ </span>`,
+    `  <span style="color:var(--green)">  ██╔══██╗██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝██╔═══██╗██║     ██║██╔═══██╗</span>`,
+    `  <span style="color:var(--green)">  ██████╔╝██║   ██║██████╔╝   ██║   █████╗  ██║   ██║██║     ██║██║   ██║</span>`,
+    `  <span style="color:var(--green)">  ██╔═══╝ ██║   ██║██╔══██╗   ██║   ██╔══╝  ██║   ██║██║     ██║██║   ██║</span>`,
+    `  <span style="color:var(--green)">  ██║     ╚██████╔╝██║  ██║   ██║   ██║     ╚██████╔╝███████╗██║╚██████╔╝</span>`,
+    `  <span style="color:var(--green)">  ╚═╝      ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝      ╚═════╝ ╚══════╝╚═╝ ╚═════╝</span>`,
   ];
-
-  art.forEach((l, i) => t(() => print(l, 'white'), 960 + i * 55));
-
-  const after = 960 + art.length * 55;
-
-  t(() => blank(), after + 20);
-  t(() => print(`  <span style="color:var(--cyan)">Andrew Wekesa</span>  <span style="color:var(--muted2)">—</span>  <span style="color:var(--white)">Software Engineer · Kisii University, Kenya 🇰🇪</span>`, 'white'), after + 60);
-  t(() => blank(4), after + 100);
-  t(() => print(`  Type <span style="color:var(--green)">help</span> to see commands &nbsp;·&nbsp; Try <span style="color:var(--green)">whoami</span> or <span style="color:var(--green)">projects</span> to get started`, 'muted'), after + 140);
-  t(() => blank(4), after + 180);
-  t(() => hr(), after + 200);
-  t(() => blank(), after + 220);
-  t(() => { output.scrollTop = output.scrollHeight; input.focus(); }, after + 300);
+  art.forEach((l,i)=>t(()=>print(l,'white'),880+i*55));
+  const after=880+art.length*55;
+  t(()=>blank(),after+20);
+  t(()=>print(`  <span style="color:var(--cyan)">Andrew Wekesa</span>  <span style="color:var(--muted2)">—</span>  <span style="color:var(--white)">Software Engineer · Kisii University, Kenya 🇰🇪</span>`,'white'),after+60);
+  t(()=>blank(),after+100);
+  t(()=>print(`  Type <span style="color:var(--green)">help</span> to see commands  ·  Try <span style="color:var(--green)">whoami</span> or <span style="color:var(--green)">projects</span> to get started`,'muted'),after+140);
+  t(()=>blank(),after+180);
+  t(()=>hr(),after+200);
+  t(()=>blank(),after+220);
+  t(()=>{output.scrollTop=output.scrollHeight;input.focus();},after+280);
 }
 
 boot();
