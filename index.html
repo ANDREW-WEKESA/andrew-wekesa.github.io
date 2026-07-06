@@ -115,24 +115,30 @@ function hr(){const d=document.createElement('div');d.className='divider';output
 function printPrompt(cmd){const d=document.createElement('div');d.className='line prompt';d.innerHTML=`<span class="p-label"><span class="pl-user">andrew</span><span class="pl-at">@</span><span class="pl-host">portfolio</span><span class="pl-sep">:</span><span class="pl-path">${esc(currentDir)}</span><span class="pl-dollar"> $</span></span><span class="cmd-text">${esc(cmd)}</span>`;output.appendChild(d);output.scrollTop=output.scrollHeight;}
 function updateCwd(){cwdEl.textContent=currentDir;tbText.textContent=`andrew@portfolio: ${currentDir}`;}
 
-const FS={'~':['about.txt','skills.txt','contact.txt','philosophy.txt','projects/','education/'],'~/projects':['fundipro/','hms/','portfolio/','footballverse/'],'~/projects/fundipro':['README.md','src/','docs/'],'~/projects/hms':['README.md','src/','frontend/'],'~/projects/portfolio':['index.html'],'~/projects/footballverse':['README.md','src/'],'~/education':['kisii_university.txt','courses.txt']};
+const FS={'~':['about.txt','skills.txt','contact.txt','philosophy.txt','projects/','education/'],'~/projects':['fundipro/','hms/','footballverse/','portfolio/'],'~/projects/fundipro':['README.md','src/','docs/','public/'],'~/projects/hms':['README.md','src/','frontend/'],'~/projects/portfolio':['index.html'],'~/projects/footballverse':['README.md','src/','data/'],'~/education':['kisii_university.txt','courses.txt']};
 
 const FILES={
 'about.txt':`
   Name     :  Andrew Wekesa Wafula
-  Role     :  Software Engineer
+  Role     :  Software Engineer · Builder · Entrepreneur
   School   :  Kisii University — BSc Software Engineering (Year 3)
   Location :  Kenya 🇰🇪
   Phone    :  +254 710 435 113 / +254 107 875 549
   Email    :  andrewekesa675@gmail.com
   GitHub   :  github.com/ANDREW-WEKESA
 
-  I build technology that makes the world safer and happier.
-  From hospital systems to service marketplaces — I ship things
-  that matter, and keep improving them because requirements never end.
+  Kenyan software developer building practical digital products —
+  marketplaces, automation systems, and web applications.
+  Focused on platforms that solve local problems but scale globally.
+
+  Philosophy:
+    • Build first, improve continuously
+    • Learn through real-world projects
+    • Ship working software, not perfect plans
+    • Create products with real business value
 
   Open to jobs, freelance projects, and collaborations.
-  Let's think big and recreate our world together.`,
+  Let's think big and recreate our world together. 🌍`,
 'skills.txt':`
   Run the 'skills' command for a full visual overview.
 
@@ -189,11 +195,14 @@ const FILES={
   SOEN 260 — API Design & Integration`,
 'README.md (fundipro)':`
   FundiPro — Service Marketplace Platform
-  Stack   : JavaScript · Node.js · React
-  Live    : Yes (no clients yet — growing)
-  Vision  : Connect fundis/artisans/technicians with customers
-  Features: Storefronts, profiles, service listings, search
-  Status  : Live & actively evolving`,
+  Live     : https://fundipro-three.vercel.app
+  GitHub   : github.com/ANDREW-WEKESA/fundipro-v2
+  Stack    : JavaScript · Node.js · React
+  Vision   : Connect fundis/artisans/technicians with customers
+  Features : Storefronts, profiles, service listings,
+             image galleries, vendor management, search
+  Ambition : Modern digital ecosystem for skilled workers
+  Status   : Live — growing`,
 'README.md (hms)':`
   HMS — Hospital Management System
   Frontend : React (Cloudflare Pages / Vercel)
@@ -217,10 +226,10 @@ const FILES={
 };
 
 const PROJECTS=[
-  {title:'FundiPro — Service Marketplace',tech:'JavaScript · Node.js · React · MySQL',desc:'Digital marketplace connecting fundis, artisans and technicians with customers. Storefronts, profiles, service listings, and search. Live — growing its client base.',link:'github.com/ANDREW-WEKESA/fundipro-v2',status:'Live',color:'var(--green)'},
-  {title:'HMS — Hospital Management System',tech:'React · Cloudflare Workers · D1 · Vite',desc:'Full hospital dashboard with patient management, appointments, AI symptom checker, analytics, disease library, billing, and owner dashboard.',link:'hms-omega-one.vercel.app',status:'Live',color:'var(--cyan)'},
-  {title:'FootballVerse — Football Analytics',tech:'Python · Data Analysis',desc:'Football data and analytics platform. Exploring stats, match data, and insights for the beautiful game.',link:'github.com/ANDREW-WEKESA/FootballVerse',status:'Active',color:'var(--yellow)'},
-  {title:'Portfolio — Terminal CV',tech:'HTML · CSS · Vanilla JS',desc:'This terminal-style developer portfolio. One file, no framework, fully interactive.',link:'andrew-wekesa.github.io',status:'Live',color:'var(--purple)'},
+  {title:'FundiPro — Service Marketplace',tech:"JavaScript · Node.js · React · MySQL",desc:'Digital marketplace connecting fundis, artisans and technicians with customers. Storefronts, profiles, service listings, image galleries, and vendor management. The long-term vision: a modern digital ecosystem for skilled workers in Kenya and beyond.',link:'fundipro-three.vercel.app',status:'Live',color:'var(--green)'},
+  {title:'HMS — Hospital Management System',tech:'React · Cloudflare Workers · D1 · Vite',desc:'Full hospital dashboard with patient management, appointments, AI symptom checker, analytics, disease library, billing, and owner dashboard. PWA-ready.',link:'hms-omega-one.vercel.app',status:'Live',color:'var(--cyan)'},
+  {title:'FootballVerse — Football Analytics',tech:'Python · Data Analysis · Automation',desc:'Football data and analytics platform. Stats, match data, insights, and automation workflows for the beautiful game.',link:'github.com/ANDREW-WEKESA/FootballVerse',status:'Active',color:'var(--yellow)'},
+  {title:'Portfolio — Terminal CV',tech:'HTML · CSS · Vanilla JS',desc:'This terminal-style developer portfolio. One file, no framework, fully interactive. Building products one deployment at a time.',link:'andrew-wekesa.github.io',status:'Live',color:'var(--purple)'},
 ];
 
 function cmdHelp(){
@@ -248,7 +257,7 @@ function cmdWhoami(){
   ];
   art.forEach(l=>print(l,'white'));
   blank();
-  [['Name','Andrew Wekesa Wafula'],['Role','Software Engineer'],['School','Kisii University — BSc SE, Year 3'],['Location','Kenya 🇰🇪'],['Email','andrewekesa675@gmail.com'],['Phone','+254 710 435 113'],['GitHub','github.com/ANDREW-WEKESA'],['Mission','Build tech that makes the world safer & happier 🌍'],['Open to','Jobs · Freelance · Collaborations 🚀']].forEach(([k,v])=>{
+  [['Name','Andrew Wekesa Wafula'],['Role','Software Engineer'],['School','Kisii University — BSc SE, Year 3'],['Location','Kenya 🇰🇪'],['Email','andrewekesa675@gmail.com'],['Phone','+254 710 435 113'],['GitHub','github.com/  [['Name','Andrew Wekesa Wafula'],['Role','Software Engineer · Builder · Entrepreneur'],['School','Kisii University — BSc SE, Year 3'],['Location','Kenya 🇰🇪'],['Email','andrewekesa675@gmail.com'],['Phone','+254 710 435 113'],['GitHub','github.com/ANDREW-WEKESA'],['FundiPro','fundipro-three.vercel.app 🚀'],['HMS','hms-omega-one.vercel.app 🏥'],['Mission','Build a safer, happier world through technology 🌍'],['Open to','Jobs · Freelance · Collaborations 🚀']].forEach(([k,v])=>{
     print(`  <span style="color:var(--cyan);display:inline-block;min-width:100px">${k}</span><span style="color:var(--muted2)"> ·  </span><span style="color:var(--white)">${v}</span>`);
   });
   blank();
