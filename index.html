@@ -305,7 +305,7 @@ function cmdProjects(){
   blank();
   PROJECTS.forEach(p=>{
     const card=document.createElement('div');card.className='project-card';
-    card.innerHTML=`<div class="p-header"><span class="p-title">${p.title}</span><span class="p-status" style="color:${p.color};border-color:${p.color}">${p.status}</span></div><div class="p-tech">${p.tech}</div><div class="p-desc">${p.desc}</div><a class="p-link" href="https://${p.link}" target="_blank" rel="noopener">↗ ${p.link}</a>`;
+    card.innerHTML=`<div class="p-header"><span class="p-title">${p.title}</span><span class="p-status" style="color:${p.color};border-color:${p.color}">${p.status}</span></div><div class="p-desc">${p.desc}</div><a class="p-link" href="https://${p.link}" target="_blank" rel="noopener">↗ ${p.link}</a>`;
     output.appendChild(card);
   });
   blank();output.scrollTop=output.scrollHeight;
