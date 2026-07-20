@@ -224,10 +224,191 @@ const FILES={
 };
 
 const PROJECTS=[
-  {title:'FundiPro — Service Marketplace',tech:"JavaScript · Node.js · React · MySQL",desc:'Digital marketplace connecting fundis, artisans and technicians with customers. Storefronts, profiles, service listings, image galleries, and vendor management. The long-term vision: a modern digital ecosystem for skilled workers in Kenya and beyond.',link:'fundipro-three.vercel.app',status:'Live',color:'var(--green)'},
-  {title:'HMS — Hospital Management System',tech:'React · Cloudflare Workers · D1 · Vite',desc:'Full hospital dashboard with patient management, appointments, AI symptom checker, analytics, disease library, billing, and owner dashboard. PWA-ready.',link:'c215c0fa.hms-frontend-gs6.pages.dev',status:'Live',color:'var(--cyan)'},
-  {title:'FootballVerse — Football Analytics',tech:'Python · Data Analysis · Automation',desc:'Football data and analytics platform. Stats, match data, insights, and automation workflows for the beautiful game.',link:'github.com/ANDREW-WEKESA/FootballVerse',status:'Active',color:'var(--yellow)'},
-  {title:'Portfolio — Terminal CV',tech:'HTML · CSS · Vanilla JS',desc:'This terminal-style developer portfolio. One file, no framework, fully interactive. Building products one deployment at a time.',link:'andrew-wekesa.github.io',status:'Live',color:'var(--purple)'},
+  {
+    title:'FundiPro — Service Marketplace',
+    desc:'Digital marketplace connecting fundis, artisans and technicians with customers. Storefronts, profiles, service listings, image galleries, and vendor management. The long-term vision: a modern digital ecosystem for skilled workers in Kenya and beyond.',
+    link:'fundipro-three.vercel.app',
+    github:'github.com/ANDREW-WEKESA/fundipro-v2',
+    status:'Live',color:'var(--green)',
+    readme:`# FundiPro — Service Marketplace
+
+## Overview
+FundiPro is a digital marketplace that connects fundis, artisans, and skilled technicians with customers across Kenya. The platform digitizes local service industries and provides skilled workers with a professional online presence.
+
+## Vision
+Become the go-to digital ecosystem for skilled workers — where any fundi can have a storefront, get discovered, and grow their business online.
+
+## Features
+- Professional storefronts for fundis and artisans
+- Service listings with images and pricing
+- Customer search and discovery
+- Vendor profile management
+- Image galleries for showcasing work
+- Customer interaction and booking
+- Search and filter capabilities
+- Scalable marketplace architecture
+
+## Tech Stack
+- Frontend: JavaScript · React · Vite
+- Backend: Node.js · Express
+- Database: MySQL
+- Deployment: Vercel
+
+## Status
+🟢 Live — actively growing client base
+
+## Links
+- Live: https://fundipro-three.vercel.app
+- GitHub: https://github.com/ANDREW-WEKESA/fundipro-v2`
+  },
+  {
+    title:'HMS — Hospital Management System',
+    desc:'Full hospital dashboard with patient management, appointments, AI symptom checker, analytics, disease library, billing, and owner dashboard. PWA-ready.',
+    link:'c215c0fa.hms-frontend-gs6.pages.dev',
+    github:'github.com/ANDREW-WEKESA/hms',
+    status:'Live',color:'var(--cyan)',
+    readme:`# HMS — Hospital Management System
+
+## Overview
+A comprehensive hospital management platform built for Kenyan healthcare facilities. Designed to digitize patient records, streamline appointments, and provide AI-powered clinical support.
+
+## Modules
+- **Patients** — Registration, profiles, medical history
+- **Appointments** — Scheduling, calendar, reminders
+- **AI Symptom Checker** — Powered by Anthropic Claude
+- **Disease Library** — Kenya-specific disease database
+- **Analytics** — Patient trends, visit analytics, reports
+- **Billing** — Invoice generation, payment tracking
+- **Lab Results** — Test ordering and results management
+- **Owner Dashboard** — Multi-hospital management
+- **Offline Support** — PWA with service worker
+
+## Tech Stack
+- Frontend: React · Vite · TailwindCSS
+- Backend: Cloudflare Workers · Hono
+- Database: Cloudflare D1 (SQLite)
+- AI: Anthropic Claude API
+- SMS: Africa's Talking
+- Deployment: Cloudflare Pages + Workers
+
+## Status
+🟢 Live & actively evolving
+
+## Links
+- Frontend: https://c215c0fa.hms-frontend-gs6.pages.dev
+- GitHub: https://github.com/ANDREW-WEKESA/hms`
+  },
+  {
+    title:'FootballVerse — Football Analytics',
+    desc:'Football data and analytics platform. Stats, match data, insights, and automation workflows for the beautiful game.',
+    link:'github.com/ANDREW-WEKESA/FootballVerse',
+    github:'github.com/ANDREW-WEKESA/FootballVerse',
+    status:'Active',color:'var(--yellow)',
+    readme:`# FootballVerse — Football Analytics
+
+## Overview
+FootballVerse is a football data and analytics platform focused on delivering insights, statistics, and automated data workflows for the beautiful game.
+
+## Goals
+- Aggregate football match data and statistics
+- Provide data-driven insights and visualizations
+- Automate data collection workflows
+- Build a comprehensive football knowledge base
+
+## Features
+- Match data collection and storage
+- Player and team statistics
+- Automated data pipelines
+- Analytics and trend analysis
+- Browser automation for data gathering
+
+## Tech Stack
+- Language: Python
+- Automation: Selenium
+- Data: Pandas · NumPy
+- Storage: SQLite / JSON
+
+## Status
+🟡 Active development
+
+## Links
+- GitHub: https://github.com/ANDREW-WEKESA/FootballVerse`
+  },
+  {
+    title:'Client Management System',
+    desc:'Full-stack client intake and project management system. Clients submit project requests, Andrew manages them through a pipeline from New to Paid. Backed by Cloudflare D1.',
+    link:'client-mgmt-iota.vercel.app',
+    github:'github.com/ANDREW-WEKESA/client-mgmt',
+    status:'Live',color:'var(--purple)',
+    readme:`# Client Management System
+
+## Overview
+A purpose-built client management system for freelance software development. Clients describe what they want to build via a structured intake form, and Andrew manages projects through a full pipeline dashboard.
+
+## Public (Client Side)
+- Project intake form with structured questions
+- Project type, description, purpose, features checklist
+- Timeline and budget range selection
+- Instant submission with confirmation
+
+## Dashboard (Private)
+- Password-protected admin area
+- Pipeline stages: New → Quoted → Agreed → In Progress → Review → Delivered → Paid
+- Per-client quote field and dev notes
+- Status management and CSV export
+- Email client directly from dashboard
+
+## Tech Stack
+- Frontend: HTML · CSS · Vanilla JS
+- Backend: Cloudflare Workers · Hono
+- Database: Cloudflare D1 (SQLite)
+- Deployment: Vercel (frontend) + Cloudflare (backend)
+
+## Status
+🟢 Live
+
+## Links
+- Live: https://client-mgmt-iota.vercel.app
+- GitHub: https://github.com/ANDREW-WEKESA/client-mgmt`
+  },
+  {
+    title:'Portfolio — Terminal CV',
+    desc:'This terminal-style developer portfolio. One file, no framework, fully interactive. Building products one deployment at a time.',
+    link:'andrew-wekesa.github.io',
+    github:'github.com/ANDREW-WEKESA/andrew-wekesa.github.io',
+    status:'Live',color:'var(--green)',
+    readme:`# Portfolio — Terminal CV
+
+## Overview
+An interactive developer portfolio designed as a Linux terminal emulator. Visitors explore Andrew's profile by typing commands — no buttons, no scrolling sections, just a terminal.
+
+## Features
+- Fake boot sequence with BIOS animation
+- ASCII art banner
+- CRT scanline overlay + vignette
+- Animated background grid
+- Ambient glow orbs
+- Live clock in titlebar
+- Full command set with tab autocomplete
+- Arrow key command history
+- Ctrl+L to clear, Ctrl+C to cancel
+
+## Commands
+\`whoami\` · \`projects\` · \`skills\` · \`contact\` · \`philosophy\`
+\`stats\` · \`neofetch\` · \`ls\` · \`cat\` · \`cd\` · \`github\` · \`email\`
+
+## Tech Stack
+- Pure HTML · CSS · Vanilla JavaScript
+- No framework · No build step · Single file
+
+## Status
+🟢 Live
+
+## Links
+- GitHub Pages: https://andrew-wekesa.github.io
+- Vercel: https://portfolio-nu-drab-iy4swruayd.vercel.app
+- GitHub: https://github.com/ANDREW-WEKESA/andrew-wekesa.github.io`
+  },
 ];
 
 function cmdHelp(){
@@ -299,14 +480,49 @@ function cmdContact(){
 
 function cmdProjects(){
   blank();
-  print(`  <span style="color:var(--yellow);font-weight:700">[ PROJECTS ]</span>  <span style="color:var(--muted2)">${PROJECTS.length} active — requirements never end</span>`,'white');
+  print(`  <span style="color:var(--yellow);font-weight:700">[ PROJECTS ]</span>  <span style="color:var(--muted2)">${PROJECTS.length} active — click any card to read README</span>`,'white');
   blank();
-  PROJECTS.forEach(p=>{
-    const card=document.createElement('div');card.className='project-card';
-    card.innerHTML=`<div class="p-header"><span class="p-title">${p.title}</span><span class="p-status" style="color:${p.color};border-color:${p.color}">${p.status}</span></div><div class="p-desc">${p.desc}</div><a class="p-link" href="https://${p.link}" target="_blank" rel="noopener">↗ ${p.link}</a>`;
+  PROJECTS.forEach((p,i)=>{
+    const card=document.createElement('div');
+    card.className='project-card';
+    card.style.cursor='pointer';
+    const readmeHtml=p.readme.split('\n').map(line=>{
+      if(line.startsWith('# '))return `<div style="color:var(--yellow);font-weight:700;font-size:14px;margin:10px 0 6px">${esc(line.slice(2))}</div>`;
+      if(line.startsWith('## '))return `<div style="color:var(--cyan);font-weight:600;font-size:12px;margin:8px 0 4px;letter-spacing:.05em">${esc(line.slice(3))}</div>`;
+      if(line.startsWith('- **'))return `<div style="color:var(--white);font-size:12px;margin:2px 0;padding-left:12px">• ${line.slice(2).replace(/\*\*(.*?)\*\*/g,'<span style="color:var(--green)">$1</span>')}</div>`;
+      if(line.startsWith('- '))return `<div style="color:var(--muted2);font-size:12px;margin:1px 0;padding-left:12px">· ${esc(line.slice(2))}</div>`;
+      if(line.startsWith('`'))return `<div style="color:var(--cyan);font-size:11px;margin:4px 0;font-family:inherit">${esc(line)}</div>`;
+      if(line.trim()==='')return `<div style="height:4px"></div>`;
+      return `<div style="color:var(--white);font-size:12px;margin:2px 0;line-height:1.5">${esc(line)}</div>`;
+    }).join('');
+    card.innerHTML=`
+      <div class="p-header" style="justify-content:space-between">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span class="p-title">${p.title}</span>
+          <span class="p-status" style="color:${p.color};border-color:${p.color}">${p.status}</span>
+        </div>
+        <span class="readme-toggle" style="font-size:11px;color:var(--muted2);white-space:nowrap">README ▸</span>
+      </div>
+      <div class="p-desc">${p.desc}</div>
+      <div style="display:flex;gap:12px;margin-top:6px;flex-wrap:wrap">
+        <a class="p-link" href="https://${p.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()">↗ ${p.link}</a>
+        <a class="p-link" href="https://${p.github}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="color:var(--muted2)">⎇ ${p.github.replace('github.com/','')}</a>
+      </div>
+      <div class="readme-body" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border2)">${readmeHtml}</div>`;
+    card.addEventListener('click',()=>{
+      const body=card.querySelector('.readme-body');
+      const toggle=card.querySelector('.readme-toggle');
+      const open=body.style.display==='none';
+      body.style.display=open?'block':'none';
+      toggle.textContent=open?'README ▾':'README ▸';
+      card.style.borderLeftColor=open?p.color.replace('var(','').replace(')','').trim():p.color;
+      output.scrollTop=output.scrollHeight;
+    });
     output.appendChild(card);
   });
-  blank();output.scrollTop=output.scrollHeight;
+  blank();
+  print(`  <span style="color:var(--muted2)">Click any project card to expand its README</span>`,'muted');
+  output.scrollTop=output.scrollHeight;
 }
 
 function cmdSkills(){
