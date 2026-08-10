@@ -118,36 +118,36 @@ const FS={'~':['about.txt','skills.txt','contact.txt','philosophy.txt','projects
 const FILES={
 'about.txt':`
   Name     :  Andrew Wekesa Wafula
-  Role     :  Software Engineer · Builder · Entrepreneur
+  Role     :  Full-Stack Developer & Solo SaaS Founder
   School   :  Kisii University — BSc Software Engineering (Year 3)
-  Location :  Kenya 🇰🇪
+  Location :  Kisii / Nairobi, Kenya 🇰🇪
   Phone    :  +254 710 435 113 / +254 107 875 549
-  Email    :  andrewekesa675@gmail.com
+  Email    :  andrewwekesa675@gmail.com
   GitHub   :  github.com/ANDREW-WEKESA
 
-  Kenyan software developer building practical digital products —
-  marketplaces, automation systems, and web applications.
-  Focused on platforms that solve local problems but scale globally.
+  BSc Software Engineering student and solo founder building
+  full-stack SaaS products for the Kenyan market.
 
-  Philosophy:
-    • Build first, improve continuously
-    • Learn through real-world projects
-    • Ship working software, not perfect plans
-    • Create products with real business value
+  Builds end-to-end — from database schema and backend APIs to
+  React frontends and production deployment — with hands-on
+  experience integrating local payment and messaging rails
+  (M-Pesa Daraja, Africa's Talking SMS).
 
-  Open to jobs, freelance projects, and collaborations.
-  Let's think big and recreate our world together. 🌍`,
+  Comfortable owning a product from concept through to a
+  near-launch, revenue-ready state.
+
+  Open to jobs, freelance projects, and collaborations. 🌍`,
 'skills.txt':`
   Run the 'skills' command for a full visual overview.
 
-  Languages  : JavaScript, Python, HTML/CSS, SQL
-  Runtime    : Node.js / Express
-  Frontend   : React, Vite, PWA
-  Databases  : MySQL, MongoDB, Cloudflare D1
-  Cloud      : Cloudflare Workers, Pages, Vercel, GitHub Pages
-  Tools      : Git, GitHub, VS Code, PowerShell
-  APIs       : M-Pesa Daraja, Africa's Talking
-  Automation : Python, Selenium`,
+  Languages    : JavaScript, Python, HTML/CSS
+  Backend      : Node.js, Express, FastAPI, Cloudflare Workers
+  Frontend     : React, Vite, Next.js
+  Data         : PostgreSQL, MySQL, MongoDB, Cloudflare D1
+  Integrations : M-Pesa Daraja API, Africa's Talking SMS
+                 JWT auth, WebSockets (Socket.IO)
+  Infra/Deploy : Cloudflare Workers & Pages, Vercel
+                 Git/GitHub, CI`,
 'contact.txt':`
   Email    :  andrewekesa675@gmail.com
   Phone    :  +254 710 435 113
@@ -225,189 +225,136 @@ const FILES={
 
 const PROJECTS=[
   {
-    title:'FundiPro — Service Marketplace',
-    desc:'Digital marketplace connecting fundis, artisans and technicians with customers. Storefronts, profiles, service listings, image galleries, and vendor management. The long-term vision: a modern digital ecosystem for skilled workers in Kenya and beyond.',
-    link:'fundipro-three.vercel.app',
+    title:'FundiPro — Business Management SaaS',
+    desc:'Business management platform for Kenyan tradespeople, built around a public storefront as the primary customer-acquisition hook. Tiered pricing (Free / Pro / Business), 13-table D1 schema, full Workers backend. Kenya-focused social marketing rollout.',
+    link:'fundipro-v21.vercel.app',
     github:'github.com/ANDREW-WEKESA/fundipro-v2',
     status:'Live',color:'var(--green)',
-    readme:`# FundiPro — Service Marketplace
+    readme:`# FundiPro — Business Management SaaS
+Solo-built · Near-launch
 
 ## Overview
-FundiPro is a digital marketplace that connects fundis, artisans, and skilled technicians with customers across Kenya. The platform digitizes local service industries and provides skilled workers with a professional online presence.
+A business management platform for Kenyan tradespeople ("fundis"), built around a public storefront as the primary customer-acquisition hook.
 
-## Vision
-Become the go-to digital ecosystem for skilled workers — where any fundi can have a storefront, get discovered, and grow their business online.
+## What Was Built
+- Designed and shipped a 13-table relational schema on Cloudflare D1 with a full Workers backend
+- Implemented tiered pricing (Free / Pro / Business) after iterating away from a commission-based model
+- Deployed live on Cloudflare Workers + Pages/Vercel
+- Drove a Kenya-focused social marketing rollout
 
 ## Features
-- Professional storefronts for fundis and artisans
-- Service listings with images and pricing
+- Public storefront for every fundi (customer-acquisition hook)
+- Service listings with images, pricing, and availability
+- Tiered subscription model: Free / Pro / Business
+- Vendor profile and portfolio management
 - Customer search and discovery
-- Vendor profile management
-- Image galleries for showcasing work
-- Customer interaction and booking
-- Search and filter capabilities
-- Scalable marketplace architecture
+- Booking and inquiry management
 
-## Tech Stack
-- Frontend: JavaScript · React · Vite
-- Backend: Node.js · Express
-- Database: MySQL
-- Deployment: Vercel
-
-## Status
-🟢 Live — actively growing client base
+## Stack
+Cloudflare Workers · D1 · Pages · Vercel
 
 ## Links
-- Live: https://fundipro-three.vercel.app
+- Live: https://fundipro-v21.vercel.app
 - GitHub: https://github.com/ANDREW-WEKESA/fundipro-v2`
   },
   {
-    title:'HMS — Hospital Management System',
-    desc:'Full hospital dashboard with patient management, appointments, AI symptom checker, analytics, disease library, billing, and owner dashboard. PWA-ready.',
+    title:'MediCore HMS — Hospital Management System',
+    desc:'Full-stack hospital management system for the Kenyan healthcare market. Patient registration, clinical workflows, AI assistant, 77-condition disease library, SMS reminders, and Recharts analytics dashboard.',
     link:'c215c0fa.hms-frontend-gs6.pages.dev',
     github:'github.com/ANDREW-WEKESA/hms',
     status:'Live',color:'var(--cyan)',
-    readme:`# HMS — Hospital Management System
+    readme:`# MediCore HMS — Hospital Management System
+Solo-built
 
 ## Overview
-A comprehensive hospital management platform built for Kenyan healthcare facilities. Designed to digitize patient records, streamline appointments, and provide AI-powered clinical support.
+A full-stack hospital management system built for the Kenyan healthcare market, combining core clinical workflows with an AI-assisted reference layer.
+
+## What Was Built
+- Built patient registration, visit/vitals recording, and prescription workflows end to end
+- Integrated automated SMS reminders via Africa's Talking
+- Built a Cloudflare Workers AI clinical assistant
+- Assembled a 77-condition disease reference library
+- Built a Recharts-powered analytics dashboard
 
 ## Modules
 - **Patients** — Registration, profiles, medical history
-- **Appointments** — Scheduling, calendar, reminders
-- **AI Symptom Checker** — Powered by Anthropic Claude
-- **Disease Library** — Kenya-specific disease database
-- **Analytics** — Patient trends, visit analytics, reports
-- **Billing** — Invoice generation, payment tracking
-- **Lab Results** — Test ordering and results management
-- **Owner Dashboard** — Multi-hospital management
-- **Offline Support** — PWA with service worker
+- **Visits & Vitals** — Clinical workflow recording
+- **Prescriptions** — Medication management
+- **Appointments** — Scheduling and reminders
+- **AI Assistant** — Clinical reference powered by Cloudflare AI
+- **Disease Library** — 77-condition Kenya-specific database
+- **Analytics** — Recharts-powered dashboard
+- **Billing** — Invoice and payment tracking
+- **Owner Dashboard** — Multi-facility management
 
-## Tech Stack
-- Frontend: React · Vite · TailwindCSS
-- Backend: Cloudflare Workers · Hono
-- Database: Cloudflare D1 (SQLite)
-- AI: Anthropic Claude API
-- SMS: Africa's Talking
-- Deployment: Cloudflare Pages + Workers
-
-## Status
-🟢 Live & actively evolving
+## Stack
+Cloudflare Workers · D1 · Pages · Africa's Talking · Recharts
 
 ## Links
 - Frontend: https://c215c0fa.hms-frontend-gs6.pages.dev
 - GitHub: https://github.com/ANDREW-WEKESA/hms`
   },
   {
-    title:'FootballVerse — Football Analytics',
-    desc:'Football data and analytics platform. Stats, match data, insights, and automation workflows for the beautiful game.',
+    title:'FootballVerse — Football Storytelling Platform',
+    desc:'Football storytelling and content platform pairing animated narratives with a Creator Studio. Video production pipeline with Ken Burns motion and synthesized audio. Built for social distribution.',
     link:'github.com/ANDREW-WEKESA/FootballVerse',
     github:'github.com/ANDREW-WEKESA/FootballVerse',
-    status:'Active',color:'var(--yellow)',
-    readme:`# FootballVerse — Football Analytics
+    status:'In Dev',color:'var(--yellow)',
+    readme:`# FootballVerse — Football Storytelling Platform
+Solo-built · In development
 
 ## Overview
-FootballVerse is a football data and analytics platform focused on delivering insights, statistics, and automated data workflows for the beautiful game.
+A football storytelling and content platform pairing animated narratives with a Creator Studio, built for social distribution.
 
-## Goals
-- Aggregate football match data and statistics
-- Provide data-driven insights and visualizations
-- Automate data collection workflows
-- Build a comprehensive football knowledge base
+## What Was Built
+- Wrote original fictional stories with parody framing to avoid real-player IP issues
+- Built a video production pipeline (PIL + ffmpeg) with Ken Burns motion and synthesized audio
+- Authored a full technical spec: FastAPI/PostgreSQL backend, React/Next.js frontend, multi-module scope
 
 ## Features
-- Match data collection and storage
-- Player and team statistics
-- Automated data pipelines
-- Analytics and trend analysis
-- Browser automation for data gathering
+- Animated football story narratives
+- Creator Studio for content production
+- Video pipeline with motion effects and audio synthesis
+- Social-first distribution architecture
+- Parody/fictional framing for IP compliance
 
-## Tech Stack
-- Language: Python
-- Automation: Selenium
-- Data: Pandas · NumPy
-- Storage: SQLite / JSON
-
-## Status
-🟡 Active development
+## Stack
+Python (PIL, ffmpeg) · FastAPI · PostgreSQL · React · Next.js
 
 ## Links
 - GitHub: https://github.com/ANDREW-WEKESA/FootballVerse`
   },
   {
     title:'Client Management System',
-    desc:'Full-stack client intake and project management system. Clients submit project requests, Andrew manages them through a pipeline from New to Paid. Backed by Cloudflare D1.',
+    desc:'Full-stack client intake and project management system. Clients submit project requests via a structured form. Andrew manages them through a pipeline (New → Paid) backed by Cloudflare D1.',
     link:'client-mgmt-iota.vercel.app',
     github:'github.com/ANDREW-WEKESA/client-mgmt',
     status:'Live',color:'var(--purple)',
     readme:`# Client Management System
+Solo-built
 
 ## Overview
 A purpose-built client management system for freelance software development. Clients describe what they want to build via a structured intake form, and Andrew manages projects through a full pipeline dashboard.
 
 ## Public (Client Side)
-- Project intake form with structured questions
+- Structured project intake form
 - Project type, description, purpose, features checklist
 - Timeline and budget range selection
 - Instant submission with confirmation
 
-## Dashboard (Private)
+## Dashboard (Private — Andrew Only)
 - Password-protected admin area
-- Pipeline stages: New → Quoted → Agreed → In Progress → Review → Delivered → Paid
+- Pipeline: New → Quoted → Agreed → In Progress → Review → Delivered → Paid
 - Per-client quote field and dev notes
 - Status management and CSV export
 - Email client directly from dashboard
 
-## Tech Stack
-- Frontend: HTML · CSS · Vanilla JS
-- Backend: Cloudflare Workers · Hono
-- Database: Cloudflare D1 (SQLite)
-- Deployment: Vercel (frontend) + Cloudflare (backend)
-
-## Status
-🟢 Live
+## Stack
+Cloudflare Workers · D1 · Hono · Vercel
 
 ## Links
 - Live: https://client-mgmt-iota.vercel.app
 - GitHub: https://github.com/ANDREW-WEKESA/client-mgmt`
-  },
-  {
-    title:'Portfolio — Terminal CV',
-    desc:'This terminal-style developer portfolio. One file, no framework, fully interactive. Building products one deployment at a time.',
-    link:'andrew-wekesa.github.io',
-    github:'github.com/ANDREW-WEKESA/andrew-wekesa.github.io',
-    status:'Live',color:'var(--green)',
-    readme:`# Portfolio — Terminal CV
-
-## Overview
-An interactive developer portfolio designed as a Linux terminal emulator. Visitors explore Andrew's profile by typing commands — no buttons, no scrolling sections, just a terminal.
-
-## Features
-- Fake boot sequence with BIOS animation
-- ASCII art banner
-- CRT scanline overlay + vignette
-- Animated background grid
-- Ambient glow orbs
-- Live clock in titlebar
-- Full command set with tab autocomplete
-- Arrow key command history
-- Ctrl+L to clear, Ctrl+C to cancel
-
-## Commands
-\`whoami\` · \`projects\` · \`skills\` · \`contact\` · \`philosophy\`
-\`stats\` · \`neofetch\` · \`ls\` · \`cat\` · \`cd\` · \`github\` · \`email\`
-
-## Tech Stack
-- Pure HTML · CSS · Vanilla JavaScript
-- No framework · No build step · Single file
-
-## Status
-🟢 Live
-
-## Links
-- GitHub Pages: https://andrew-wekesa.github.io
-- Vercel: https://portfolio-nu-drab-iy4swruayd.vercel.app
-- GitHub: https://github.com/ANDREW-WEKESA/andrew-wekesa.github.io`
   },
 ];
 
@@ -436,7 +383,7 @@ function cmdWhoami(){
   ];
   art.forEach(l=>print(l,'white'));
   blank();
-  [['Name','Andrew Wekesa Wafula'],['Role','Software Engineer · Builder · Entrepreneur'],['School','Kisii University — BSc SE, Year 3'],['Location','Kenya 🇰🇪'],['Email','andrewekesa675@gmail.com'],['Phone','+254 710 435 113'],['GitHub','github.com/ANDREW-WEKESA'],['FundiPro','fundipro-three.vercel.app 🚀'],['HMS','c215c0fa.hms-frontend-gs6.pages.dev 🏥'],['Mission','Build a safer, happier world through technology 🌍'],['Open to','Jobs · Freelance · Collaborations 🚀']].forEach(([k,v])=>{
+  [['Name','Andrew Wekesa Wafula'],['Role','Full-Stack Developer & Solo SaaS Founder'],['School','Kisii University — BSc SE, Year 3'],['Location','Kisii / Nairobi, Kenya 🇰🇪'],['Email','andrewwekesa675@gmail.com'],['Phone','+254 710 435 113'],['GitHub','github.com/ANDREW-WEKESA'],['FundiPro','fundipro-v21.vercel.app 🚀'],['HMS','c215c0fa.hms-frontend-gs6.pages.dev 🏥'],['Focus','SaaS · M-Pesa · Africa\'s Talking · Cloudflare'],['Open to','Jobs · Freelance · Collaborations 🚀']].forEach(([k,v])=>{
     print(`  <span style="color:var(--cyan);display:inline-block;min-width:100px">${k}</span><span style="color:var(--muted2)"> ·  </span><span style="color:var(--white)">${v}</span>`);
   });
   blank();
@@ -487,7 +434,8 @@ function cmdProjects(){
     card.className='project-card';
     card.style.cursor='pointer';
     const readmeHtml=p.readme.split('\n').map(line=>{
-      if(line.startsWith('# '))return `<div style="color:var(--yellow);font-weight:700;font-size:14px;margin:10px 0 6px">${esc(line.slice(2))}</div>`;
+      if(line.startsWith('# '))retustuck?
+      rn `<div style="color:var(--yellow);font-weight:700;font-size:14px;margin:10px 0 6px">${esc(line.slice(2))}</div>`;
       if(line.startsWith('## '))return `<div style="color:var(--cyan);font-weight:600;font-size:12px;margin:8px 0 4px;letter-spacing:.05em">${esc(line.slice(3))}</div>`;
       if(line.startsWith('- **'))return `<div style="color:var(--white);font-size:12px;margin:2px 0;padding-left:12px">• ${line.slice(2).replace(/\*\*(.*?)\*\*/g,'<span style="color:var(--green)">$1</span>')}</div>`;
       if(line.startsWith('- '))return `<div style="color:var(--muted2);font-size:12px;margin:1px 0;padding-left:12px">· ${esc(line.slice(2))}</div>`;
@@ -527,25 +475,25 @@ function cmdProjects(){
 
 function cmdSkills(){
   blank();print(`  <span style="color:var(--yellow);font-weight:700">[ SKILLS ]</span>`,'white');blank();
-  const bars=[['HTML / CSS',95,'linear-gradient(90deg,var(--green),var(--cyan))'],['JavaScript',90,'linear-gradient(90deg,var(--yellow),var(--green))'],['Node.js',84,'linear-gradient(90deg,var(--green),var(--green-dim))'],['React / Vite',80,'linear-gradient(90deg,var(--cyan),var(--blue))'],['MySQL / D1',82,'linear-gradient(90deg,var(--blue),var(--cyan))'],['Git / GitHub',88,'linear-gradient(90deg,var(--purple),var(--blue))'],['Python',70,'linear-gradient(90deg,var(--yellow),var(--green-dim))'],['MongoDB',68,'linear-gradient(90deg,var(--green-dim),var(--cyan))'],['Cloudflare',75,'linear-gradient(90deg,var(--yellow),var(--cyan))']];
+  const bars=[['HTML / CSS',95,'linear-gradient(90deg,var(--green),var(--cyan))'],['JavaScript',92,'linear-gradient(90deg,var(--yellow),var(--green))'],['Node.js / Express',88,'linear-gradient(90deg,var(--green),var(--green-dim))'],['React / Next.js',84,'linear-gradient(90deg,var(--cyan),var(--blue))'],['Python / FastAPI',78,'linear-gradient(90deg,var(--yellow),var(--green-dim))'],['PostgreSQL / MySQL',82,'linear-gradient(90deg,var(--blue),var(--cyan))'],['Cloudflare Stack',85,'linear-gradient(90deg,var(--yellow),var(--cyan))'],['Git / GitHub',90,'linear-gradient(90deg,var(--purple),var(--blue))'],['Socket.IO / WS',72,'linear-gradient(90deg,var(--purple),var(--cyan))']];
   const sec=document.createElement('div');sec.className='skills-section';
   bars.forEach(([name,pct,grad])=>{const row=document.createElement('div');row.className='skill-row';row.innerHTML=`<div class="skill-name">${name}</div><div class="skill-track"><div class="skill-fill" data-w="${pct}" style="background:${grad}"></div></div><div class="skill-pct">${pct}%</div>`;sec.appendChild(row);});
   output.appendChild(sec);
   setTimeout(()=>sec.querySelectorAll('.skill-fill').forEach(b=>b.style.width=b.dataset.w+'%'),60);
   blank();print(`  <span style="color:var(--muted2)">Kenyan APIs & Cloud</span>`);
   const t1=document.createElement('div');t1.className='tag-cloud';t1.style.marginLeft='2px';
-  ["M-Pesa Daraja","Africa's Talking","Cloudflare Workers","Vercel","GitHub Pages"].forEach(t=>{const s=document.createElement('span');s.className='tag cyan';s.textContent=t;t1.appendChild(s);});
+  ["M-Pesa Daraja","Africa's Talking","Cloudflare Workers","Socket.IO","JWT Auth"].forEach(t=>{const s=document.createElement('span');s.className='tag cyan';s.textContent=t;t1.appendChild(s);});
   output.appendChild(t1);blank();
   print(`  <span style="color:var(--muted2)">Concepts & Tools</span>`);
   const t2=document.createElement('div');t2.className='tag-cloud';t2.style.marginLeft='2px';
-  [{t:'REST API',c:'green'},{t:'JWT',c:'green'},{t:'PWA',c:'green'},{t:'Selenium',c:'yellow'},{t:'Schema Design',c:'blue'},{t:'MVC',c:'purple'},{t:'SaaS',c:'yellow'},{t:'Marketplace',c:'purple'},{t:'D1 SQLite',c:'blue'},{t:'VS Code',c:'blue'}].forEach(({t,c})=>{const s=document.createElement('span');s.className=`tag ${c}`;s.textContent=t;t2.appendChild(s);});
+  [{t:'REST API',c:'green'},{t:'JWT',c:'green'},{t:'PWA',c:'green'},{t:'WebSockets',c:'yellow'},{t:'FastAPI',c:'yellow'},{t:'Schema Design',c:'blue'},{t:'Next.js',c:'blue'},{t:'Electron',c:'purple'},{t:'D1 SQLite',c:'blue'},{t:'Vercel',c:'blue'}].forEach(({t,c})=>{const s=document.createElement('span');s.className=`tag ${c}`;s.textContent=t;t2.appendChild(s);});
   output.appendChild(t2);blank();output.scrollTop=output.scrollHeight;
 }
 
 function cmdStats(){
   blank();print(`  <span style="color:var(--yellow);font-weight:700">[ STATS ]</span>`,'white');blank();
   const grid=document.createElement('div');grid.className='stat-grid';
-  [['4','PROJECTS'],['3+','YEARS CODING'],['Y3','BSc YEAR'],['2','LIVE APPS'],['2','KENYAN APIs'],['∞','REQUIREMENTS'],['🇰🇪','KENYA'],['🌍','MISSION']].forEach(([val,lbl])=>{const c=document.createElement('div');c.className='stat-card';c.innerHTML=`<div class="stat-val">${val}</div><div class="stat-lbl">${lbl}</div>`;grid.appendChild(c);});
+  [['4','PROJECTS'],['Y3','BSc YEAR'],['2','LIVE SAAS'],['13','D1 TABLES (FP)'],['77','HMS DISEASES'],['2','KENYAN APIs'],['🇰🇪','KENYA'],['🌍','MISSION']].forEach(([val,lbl])=>{const c=document.createElement('div');c.className='stat-card';c.innerHTML=`<div class="stat-val">${val}</div><div class="stat-lbl">${lbl}</div>`;grid.appendChild(c);});
   output.appendChild(grid);blank();output.scrollTop=output.scrollHeight;
 }
 
