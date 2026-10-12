@@ -113,7 +113,7 @@ function hr(){const d=document.createElement('div');d.className='divider';output
 function printPrompt(cmd){const d=document.createElement('div');d.className='line prompt';d.innerHTML=`<span class="p-label"><span class="pl-user">andrew</span><span class="pl-at">@</span><span class="pl-host">portfolio</span><span class="pl-sep">:</span><span class="pl-path">${esc(currentDir)}</span><span class="pl-dollar"> $</span></span><span class="cmd-text">${esc(cmd)}</span>`;output.appendChild(d);output.scrollTop=output.scrollHeight;}
 function updateCwd(){cwdEl.textContent=currentDir;tbText.textContent=`andrew@portfolio: ${currentDir}`;}
 
-const FS={'~':['about.txt','skills.txt','contact.txt','philosophy.txt','projects/','education/'],'~/projects':['fundipro/','hms/','footballverse/','portfolio/'],'~/projects/fundipro':['README.md','src/','docs/','public/'],'~/projects/hms':['README.md','src/','frontend/'],'~/projects/portfolio':['index.html'],'~/projects/footballverse':['README.md','src/','data/'],'~/education':['kisii_university.txt','courses.txt']};
+const FS={'~':['about.txt','skills.txt','contact.txt','philosophy.txt','projects/','education/'],'~/projects':['smartbursary/','fundipro/','hms/','footballverse/','portfolio/'],'~/projects/smartbursary':['README.md','frontend/','backend/'],'~/projects/fundipro':['README.md','src/','docs/','public/'],'~/projects/hms':['README.md','src/','frontend/'],'~/projects/portfolio':['index.html'],'~/projects/footballverse':['README.md','src/','data/'],'~/education':['kisii_university.txt','courses.txt']};
 
 const FILES={
 'about.txt':`
@@ -126,8 +126,14 @@ const FILES={
   GitHub   :  github.com/ANDREW-WEKESA
 
   Kenyan software developer building practical digital products —
-  marketplaces, automation systems, and web applications.
+  government systems, marketplaces, healthcare automation, and web applications.
   Focused on platforms that solve local problems but scale globally.
+
+  Key Projects:
+    • SmartBursary — NG-CDF bursary management (15 constituencies)
+    • HMS — Hospital management with AI symptom checker
+    • FundiPro — Service marketplace for artisans
+    • Client Management — Freelance pipeline system
 
   Philosophy:
     • Build first, improve continuously
@@ -191,6 +197,19 @@ const FILES={
   SOEN 212 — Software Design
   SOEN 255 — Web Development
   SOEN 260 — API Design & Integration`,
+'README.md (smartbursary)':`
+  SmartBursary — NG-CDF Bursary Management
+  Live     : https://smart-bursary-xijg-git-main-andrew-wekesas-projects.vercel.app
+  Backend  : https://smartbursary-backend.onrender.com
+  GitHub   : github.com/ANDREW-WEKESA/SmartBursary
+  Stack    : React · FastAPI · PostgreSQL
+  Purpose  : Digitize Kenya's NG-CDF bursary process
+  Features : Student applications, multi-constituency support,
+             document uploads, 8-stage review workflow,
+             PDF award letter generation, email/SMS notifications,
+             role-based access (students, reviewers, admins),
+             15 constituencies, audit logging
+  Status   : Live — Government-ready production system`,
 'README.md (fundipro)':`
   FundiPro — Service Marketplace Platform
   Live     : https://fundipro-v21.vercel.app
@@ -217,13 +236,185 @@ const FILES={
 'README.md (portfolio)':`
   Portfolio — Terminal CV
   Stack   : HTML · CSS · Vanilla JS
-  Live    : andrew-wekesa.github.io
-            portfolio-nu-drab-iy4swruayd.vercel.app
+  Live    : andrew-wekesa.vercel.app
   Concept : Interactive terminal-style developer portfolio
   Status  : Live`,
 };
 
 const PROJECTS=[
+  {
+    title:'SmartBursary — NG-CDF Management System',
+    desc:'Full-stack government bursary management system for Kenya\'s National Government Constituency Development Fund. Digitizes the entire application, review, and award process across 15 constituencies. Students apply online, admins review and approve, PDF award letters generated automatically.',
+    link:'smart-bursary-xijg-git-main-andrew-wekesas-projects.vercel.app',
+    github:'github.com/ANDREW-WEKESA/SmartBursary',
+    status:'Live',color:'var(--blue)',
+    readme:`# SmartBursary — NG-CDF Management System
+
+## Overview
+SmartBursary is a production-ready bursary management system for Kenya's National Government Constituency Development Fund (NG-CDF). It digitizes the entire bursary lifecycle from student application to award letter generation, making education funding transparent, efficient, and accessible.
+
+## Problem Solved
+Replaces manual, paper-based bursary processes with a secure, auditable digital platform that serves students, CDF committee members, and government administrators.
+
+## User Roles
+- **Applicants (Students)** — Register, complete profile, upload documents, apply for bursaries, track status
+- **Reviewers** — Review applications from their constituency, verify documents, add recommendations
+- **Administrators** — Full system access, create bursary programs, approve/reject awards, generate reports
+
+## Key Features
+### Application Management
+- Smart forms with auto-fill from student profiles
+- 15 real Kenya constituencies (Westlands, Kasarani, Embakasi, Kisumu, Nakuru, Eldoret, etc.)
+- Priority scoring based on financial need
+- Duplicate application detection
+- 8-stage workflow: Submitted → Under Review → Verification → Committee Review → Approved/Rejected/Disbursed
+
+### Document Management
+- Upload ID, admission letters, fee structures
+- PDF, JPG, PNG support (max 5MB)
+- Document verification workflow
+- Secure cloud storage
+
+### Security & Compliance
+- JWT authentication with 5-hour sessions
+- Email verification for all applicants
+- Password reset with OTP
+- Role-based access control (RBAC)
+- Complete audit logging
+- Constituency-based data isolation
+
+### Communication System
+- **Email Notifications** (SendGrid): Registration OTP, application confirmations, status updates
+- **SMS Notifications** (Africa's Talking): Registration OTP, approval alerts, disbursement notices
+- Real-time in-app notifications
+
+### Award Letter Generation
+- Professional PDF with CDF branding
+- Official signatures (Chairperson + Officer)
+- Downloadable when status = Approved/Disbursed
+- Ready to print and submit to school
+
+### Dashboard & Analytics
+- Application statistics by status
+- Financial need indicators
+- Constituency breakdowns
+- CSV export for reports
+- Real-time application tracking
+
+## Tech Stack
+- **Frontend:** React + Vite · Lucide Icons · Responsive Design
+- **Backend:** FastAPI (Python) · SQLAlchemy ORM · JWT Auth
+- **Database:** PostgreSQL (Render)
+- **PDF Generation:** ReportLab
+- **Email:** SendGrid API
+- **SMS:** Africa's Talking API
+- **Deployment:** Vercel (frontend) + Render (backend + database)
+
+## Multi-Constituency Support
+15 constituencies including:
+- Nairobi: Westlands, Kasarani, Embakasi East/South/West
+- Kisumu: Kisumu East, Kisumu Central
+- Nakuru: Nakuru Town East, Molo
+- Rift Valley: Eldoret North, Kericho
+- Coast: Mombasa Island, Malindi
+- And more (expandable to all 290 constituencies)
+
+## Database Schema
+- **users** — All system users (students, reviewers, admins)
+- **bursaries** — Funding programs per constituency
+- **applications** — Student bursary applications
+- **documents** — Uploaded files linked to applications
+- **profile_documents** — Student profile documents
+- **email_otp** — One-time passwords for verification
+- **notifications** — In-app alerts
+- **audit_log** — Complete activity history
+
+## Sample Bursaries (Seeded)
+- Constituency Development Bursary (KES 15,000)
+- County Education Fund (KES 25,000)
+- Orphans & Vulnerable Learners Grant (KES 40,000)
+- STEM Merit Bursary (KES 30,000)
+
+## Typical User Journey
+### Student Path
+1. Register → Email OTP → Verify
+2. Complete Profile → Upload ID, Student ID, Admission Letter
+3. Browse Bursaries → Filter by constituency
+4. Apply → Fill form → Upload documents → Submit
+5. Track Status → Real-time updates → Email/SMS alerts
+6. Get Approved → Download award letter → Print → Submit to school
+
+### Admin Path
+1. Login → Dashboard overview
+2. Review Applications → Check documents → Verify eligibility
+3. Update Status → Add comments → Approve/Reject
+4. Generate Reports → Export CSV → Share with committee
+5. Manage Programs → Create new bursaries → Set deadlines
+
+## Design Principles
+- **Transparency:** Every action is logged in audit trail
+- **Human-Led Decisions:** Auto-scoring helps, humans decide
+- **Secure by Default:** Email verification, constituency isolation
+- **Mobile-Friendly:** Fully responsive design
+- **Accessible:** Clear language, visual status indicators
+
+## Status
+🟢 Live in Production
+
+## Cost (Monthly)
+- Render PostgreSQL: Free tier
+- Render Web Service: Free tier
+- Vercel Frontend: Free tier
+- SendGrid: Free (100 emails/day)
+- Africa's Talking SMS: ~KES 160/month
+- **Total: ~KES 160/month** (or free if SMS disabled)
+
+## Links
+- Frontend: https://smart-bursary-xijg-git-main-andrew-wekesas-projects.vercel.app/
+- Backend API: https://smartbursary-backend.onrender.com
+- GitHub: https://github.com/ANDREW-WEKESA/SmartBursary
+- Admin Login: admin@smartbursary.com / ChangeMe!
+
+## Impact
+Making education funding in Kenya transparent, accessible, and efficient for thousands of students. 🎓✨`
+  },
+  {
+    title:'Client Management System',
+    desc:'Full-stack client intake and project management system. Clients submit project requests, Andrew manages them through a pipeline from New to Paid. Backed by Cloudflare D1.',
+    link:'client-mgmt-iota.vercel.app',
+    github:'github.com/ANDREW-WEKESA/client-mgmt',
+    status:'Live',color:'var(--purple)',
+    readme:`# Client Management System
+
+## Overview
+A purpose-built client management system for freelance software development. Clients describe what they want to build via a structured intake form, and Andrew manages projects through a full pipeline dashboard.
+
+## Public (Client Side)
+- Project intake form with structured questions
+- Project type, description, purpose, features checklist
+- Timeline and budget range selection
+- Instant submission with confirmation
+
+## Dashboard (Private)
+- Password-protected admin area
+- Pipeline stages: New → Quoted → Agreed → In Progress → Review → Delivered → Paid
+- Per-client quote field and dev notes
+- Status management and CSV export
+- Email client directly from dashboard
+
+## Tech Stack
+- Frontend: HTML · CSS · Vanilla JS
+- Backend: Cloudflare Workers · Hono
+- Database: Cloudflare D1 (SQLite)
+- Deployment: Vercel (frontend) + Cloudflare (backend)
+
+## Status
+🟢 Live
+
+## Links
+- Live: https://client-mgmt-iota.vercel.app
+- GitHub: https://github.com/ANDREW-WEKESA/client-mgmt`
+  },
   {
     title:'FundiPro — Service Marketplace',
     desc:'Digital marketplace connecting fundis, artisans and technicians with customers. Storefronts, profiles, service listings, image galleries, and vendor management. The long-term vision: a modern digital ecosystem for skilled workers in Kenya and beyond.',
@@ -264,7 +455,7 @@ Become the go-to digital ecosystem for skilled workers — where any fundi can h
   {
     title:'HMS — Hospital Management System',
     desc:'Full hospital dashboard with patient management, appointments, AI symptom checker, analytics, disease library, billing, and owner dashboard. PWA-ready.',
-    link:'c215c0fa.hms-frontend-gs6.pages.dev',
+    link:'hms-frontend-gs6.pages.dev',
     github:'github.com/ANDREW-WEKESA/hms',
     status:'Live',color:'var(--cyan)',
     readme:`# HMS — Hospital Management System
@@ -295,7 +486,7 @@ A comprehensive hospital management platform built for Kenyan healthcare facilit
 🟢 Live & actively evolving
 
 ## Links
-- Frontend: https://c215c0fa.hms-frontend-gs6.pages.dev
+- Frontend: https://hms-frontend-gs6.pages.dev
 - GitHub: https://github.com/ANDREW-WEKESA/hms`
   },
   {
@@ -372,10 +563,47 @@ A purpose-built client management system for freelance software development. Cli
 - GitHub: https://github.com/ANDREW-WEKESA/client-mgmt`
   },
   {
+    title:'Client Management System',
+    desc:'Full-stack client intake and project management system. Clients submit project requests, Andrew manages them through a pipeline from New to Paid. Backed by Cloudflare D1.',
+    link:'client-mgmt-iota.vercel.app',
+    github:'github.com/ANDREW-WEKESA/client-mgmt',
+    status:'Live',color:'var(--purple)',
+    readme:`# Client Management System
+
+## Overview
+A purpose-built client management system for freelance software development. Clients describe what they want to build via a structured intake form, and Andrew manages projects through a full pipeline dashboard.
+
+## Public (Client Side)
+- Project intake form with structured questions
+- Project type, description, purpose, features checklist
+- Timeline and budget range selection
+- Instant submission with confirmation
+
+## Dashboard (Private)
+- Password-protected admin area
+- Pipeline stages: New → Quoted → Agreed → In Progress → Review → Delivered → Paid
+- Per-client quote field and dev notes
+- Status management and CSV export
+- Email client directly from dashboard
+
+## Tech Stack
+- Frontend: HTML · CSS · Vanilla JS
+- Backend: Cloudflare Workers · Hono
+- Database: Cloudflare D1 (SQLite)
+- Deployment: Vercel (frontend) + Cloudflare (backend)
+
+## Status
+🟢 Live
+
+## Links
+- Live: https://client-mgmt-iota.vercel.app
+- GitHub: https://github.com/ANDREW-WEKESA/client-mgmt`
+  },
+  {
     title:'Portfolio — Terminal CV',
     desc:'This terminal-style developer portfolio. One file, no framework, fully interactive. Building products one deployment at a time.',
-    link:'andrew-wekesa.github.io',
-    github:'github.com/ANDREW-WEKESA/andrew-wekesa.github.io',
+    link:'andrew-wekesa.vercel.app',
+    github:'github.com/ANDREW-WEKESA/portfolio',
     status:'Live',color:'var(--green)',
     readme:`# Portfolio — Terminal CV
 
@@ -405,9 +633,8 @@ An interactive developer portfolio designed as a Linux terminal emulator. Visito
 🟢 Live
 
 ## Links
-- GitHub Pages: https://andrew-wekesa.github.io
-- Vercel: https://portfolio-nu-drab-iy4swruayd.vercel.app
-- GitHub: https://github.com/ANDREW-WEKESA/andrew-wekesa.github.io`
+- Live: https://andrew-wekesa.vercel.app
+- GitHub: https://github.com/ANDREW-WEKESA/portfolio`
   },
 ];
 
@@ -436,7 +663,7 @@ function cmdWhoami(){
   ];
   art.forEach(l=>print(l,'white'));
   blank();
-  [['Name','Andrew Wekesa Wafula'],['Role','Software Engineer · Builder · Entrepreneur'],['School','Kisii University — BSc SE, Year 3'],['Location','Kenya 🇰🇪'],['Email','andrewekesa675@gmail.com'],['Phone','+254 710 435 113'],['GitHub','github.com/ANDREW-WEKESA'],['FundiPro','fundipro-v21.vercel.app 🚀'],['HMS','c215c0fa.hms-frontend-gs6.pages.dev 🏥'],['Mission','Build a safer, happier world through technology 🌍'],['Open to','Jobs · Freelance · Collaborations 🚀']].forEach(([k,v])=>{
+  [['Name','Andrew Wekesa Wafula'],['Role','Software Engineer · Builder · Entrepreneur'],['School','Kisii University — BSc SE, Year 3'],['Location','Kenya 🇰🇪'],['Email','andrewekesa675@gmail.com'],['Phone','+254 710 435 113'],['GitHub','github.com/ANDREW-WEKESA'],['SmartBursary','smart-bursary-xijg-git-main-andrew-wekesas-projects.vercel.app 🎓'],['FundiPro','fundipro-v21.vercel.app 🚀'],['HMS','hms-frontend-gs6.pages.dev 🏥'],['Client Mgmt','client-mgmt-iota.vercel.app 📋'],['Mission','Build a safer, happier world through technology 🌍'],['Open to','Jobs · Freelance · Collaborations 🚀']].forEach(([k,v])=>{
     print(`  <span style="color:var(--cyan);display:inline-block;min-width:100px">${k}</span><span style="color:var(--muted2)"> ·  </span><span style="color:var(--white)">${v}</span>`);
   });
   blank();
@@ -453,7 +680,7 @@ function cmdPhilosophy(){
   print(`  <span style="color:var(--white)">It is infrastructure for human progress.</span>`);
   blank();
   print(`  <span style="color:var(--muted2)">Every project I build is a step toward that world:</span>`);
-  [['HMS','Better healthcare access for everyone'],['FundiPro','Dignified work & income for skilled people'],['FootballVerse','Data-driven insights for the beautiful game'],['Next','Whatever the world needs built next']].forEach(([k,v])=>{
+  [['SmartBursary','Transparent education funding for Kenya'],['HMS','Better healthcare access for everyone'],['FundiPro','Dignified work & income for skilled people'],['FootballVerse','Data-driven insights for the beautiful game'],['Next','Whatever the world needs built next']].forEach(([k,v])=>{
     print(`  <span style="color:var(--green)">✦</span>  <span style="color:var(--cyan)">${k.padEnd(14)}</span><span style="color:var(--white)">${v}</span>`);
   });
   blank();
@@ -466,7 +693,7 @@ function cmdContact(){
   blank();
   print(`  <span style="color:var(--yellow);font-weight:700">[ CONTACT ANDREW ]</span>`,'white');
   blank();
-  [['Email','andrewekesa675@gmail.com','var(--green)'],['Phone','+254 710 435 113','var(--cyan)'],['Alt','  +254 107 875 549','var(--cyan)'],['GitHub','github.com/ANDREW-WEKESA','var(--green)'],['Portfolio','andrew-wekesa.github.io','var(--blue)'],['Location','Kenya 🇰🇪','var(--white)']].forEach(([k,v,c])=>{
+  [['Email','andrewekesa675@gmail.com','var(--green)'],['Phone','+254 710 435 113','var(--cyan)'],['Alt','  +254 107 875 549','var(--cyan)'],['GitHub','github.com/ANDREW-WEKESA','var(--green)'],['Portfolio','andrew-wekesa.vercel.app','var(--blue)'],['Location','Kenya 🇰🇪','var(--white)']].forEach(([k,v,c])=>{
     print(`  <span style="color:var(--muted2);display:inline-block;min-width:100px">${k}</span><span style="color:${c}">${v}</span>`);
   });
   blank();
@@ -545,7 +772,7 @@ function cmdSkills(){
 function cmdStats(){
   blank();print(`  <span style="color:var(--yellow);font-weight:700">[ STATS ]</span>`,'white');blank();
   const grid=document.createElement('div');grid.className='stat-grid';
-  [['4','PROJECTS'],['3+','YEARS CODING'],['Y3','BSc YEAR'],['2','LIVE APPS'],['2','KENYAN APIs'],['∞','REQUIREMENTS'],['🇰🇪','KENYA'],['🌍','MISSION']].forEach(([val,lbl])=>{const c=document.createElement('div');c.className='stat-card';c.innerHTML=`<div class="stat-val">${val}</div><div class="stat-lbl">${lbl}</div>`;grid.appendChild(c);});
+  [['5','PROJECTS'],['3+','YEARS CODING'],['Y3','BSc YEAR'],['5','LIVE APPS'],['2','KENYAN APIs'],['∞','REQUIREMENTS'],['🇰🇪','KENYA'],['🌍','MISSION']].forEach(([val,lbl])=>{const c=document.createElement('div');c.className='stat-card';c.innerHTML=`<div class="stat-val">${val}</div><div class="stat-lbl">${lbl}</div>`;grid.appendChild(c);});
   output.appendChild(grid);blank();output.scrollTop=output.scrollHeight;
 }
 
