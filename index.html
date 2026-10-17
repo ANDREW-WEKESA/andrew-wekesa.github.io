@@ -419,7 +419,6 @@ A purpose-built client management system for freelance software development. Cli
     title:'FundiPro — Service Marketplace',
     desc:'Digital marketplace connecting fundis, artisans and technicians with customers. Storefronts, profiles, service listings, image galleries, and vendor management. The long-term vision: a modern digital ecosystem for skilled workers in Kenya and beyond.',
     link:'fundipro-v21.vercel.app',
-    landingPage:'fundipro.html',
     github:'github.com/ANDREW-WEKESA/fundipro-v2',
     status:'Live',color:'var(--green)',
     readme:`# FundiPro — Service Marketplace
@@ -457,7 +456,6 @@ Become the go-to digital ecosystem for skilled workers — where any fundi can h
     title:'HMS — Hospital Management System',
     desc:'Full hospital dashboard with patient management, appointments, AI symptom checker, analytics, disease library, billing, and owner dashboard. PWA-ready.',
     link:'hms-frontend-gs6.pages.dev',
-    landingPage:'hms.html',
     github:'github.com/ANDREW-WEKESA/hms',
     status:'Live',color:'var(--cyan)',
     readme:`# HMS — Hospital Management System
@@ -528,7 +526,7 @@ FootballVerse is a football data and analytics platform focused on delivering in
 - GitHub: https://github.com/ANDREW-WEKESA/FootballVerse`
   },
   {
-    title:'Client Management System',
+    title:'FundiPro Website',
     desc:'Full-stack client intake and project management system. Clients submit project requests, Andrew manages them through a pipeline from New to Paid. Backed by Cloudflare D1.',
     link:'client-mgmt-iota.vercel.app',
     github:'github.com/ANDREW-WEKESA/client-mgmt',
@@ -686,7 +684,7 @@ Professional marketing website for the Hospital Management System (HMS). Compreh
 - GitHub: https://github.com/ANDREW-WEKESA/hms-website`
   },
   {
-    title:'FundiPro Landing Page',
+    title:'Portfolio — Terminal CV',
     desc:'Professional marketing website for FundiPro service marketplace. Modern dark-themed landing page showcasing features, tech stack, and CTAs. Built with pure HTML/CSS.',
     link:'andrew-wekesa.vercel.app/fundipro.html',
     github:'github.com/ANDREW-WEKESA/portfolio',
@@ -908,7 +906,6 @@ function cmdProjects(){
       </div>
       <div class="p-desc">${p.desc}</div>
       <div style="display:flex;gap:12px;margin-top:6px;flex-wrap:wrap">
-        ${p.landingPage?`<a class="p-link" href="${p.landingPage}" onclick="event.stopPropagation()" style="color:var(--yellow)">📄 Landing Page</a>`:''}
         <a class="p-link" href="https://${p.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()">↗ ${p.link}</a>
         <a class="p-link" href="https://${p.github}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="color:var(--muted2)">⎇ ${p.github.replace('github.com/','')}</a>
       </div>
@@ -949,7 +946,7 @@ function cmdSkills(){
 function cmdStats(){
   blank();print(`  <span style="color:var(--yellow);font-weight:700">[ STATS ]</span>`,'white');blank();
   const grid=document.createElement('div');grid.className='stat-grid';
-  [['9','PROJECTS'],['3+','YEARS CODING'],['Y3','BSc YEAR'],['9','LIVE APPS'],['2','KENYAN APIs'],['∞','REQUIREMENTS'],['🇰🇪','KENYA'],['🌍','MISSION']].forEach(([val,lbl])=>{const c=document.createElement('div');c.className='stat-card';c.innerHTML=`<div class="stat-val">${val}</div><div class="stat-lbl">${lbl}</div>`;grid.appendChild(c);});
+  [['7','PROJECTS'],['3+','YEARS CODING'],['Y3','BSc YEAR'],['7','LIVE APPS'],['2','KENYAN APIs'],['∞','REQUIREMENTS'],['🇰🇪','KENYA'],['🌍','MISSION']].forEach(([val,lbl])=>{const c=document.createElement('div');c.className='stat-card';c.innerHTML=`<div class="stat-val">${val}</div><div class="stat-lbl">${lbl}</div>`;grid.appendChild(c);});
   output.appendChild(grid);blank();output.scrollTop=output.scrollHeight;
 }
 
