@@ -419,6 +419,7 @@ A purpose-built client management system for freelance software development. Cli
     title:'FundiPro — Service Marketplace',
     desc:'Digital marketplace connecting fundis, artisans and technicians with customers. Storefronts, profiles, service listings, image galleries, and vendor management. The long-term vision: a modern digital ecosystem for skilled workers in Kenya and beyond.',
     link:'fundipro-v21.vercel.app',
+    landingPage:'fundipro.html',
     github:'github.com/ANDREW-WEKESA/fundipro-v2',
     status:'Live',color:'var(--green)',
     readme:`# FundiPro — Service Marketplace
@@ -456,6 +457,7 @@ Become the go-to digital ecosystem for skilled workers — where any fundi can h
     title:'HMS — Hospital Management System',
     desc:'Full hospital dashboard with patient management, appointments, AI symptom checker, analytics, disease library, billing, and owner dashboard. PWA-ready.',
     link:'hms-frontend-gs6.pages.dev',
+    landingPage:'hms.html',
     github:'github.com/ANDREW-WEKESA/hms',
     status:'Live',color:'var(--cyan)',
     readme:`# HMS — Hospital Management System
@@ -642,7 +644,7 @@ function cmdHelp(){
   blank();
   print(`  <span style="color:var(--yellow);font-weight:700">COMMANDS</span>`,'white');
   blank();
-  [['whoami','Who is Andrew?'],['projects','All projects'],['skills','Skills overview'],['contact','Contact info'],['philosophy','My mission & vision'],['stats','Quick stats'],['neofetch','System info'],['ls','List directory'],['cat [file]','Read a file'],['cd [dir]','Change directory'],['pwd','Working directory'],['github','Open GitHub'],['email','Send email'],['date','Current date/time'],['history','Command history'],['clear','Clear terminal']].forEach(([c,d])=>{
+  [['whoami','Who is Andrew?'],['projects','All projects'],['pages','Project landing pages'],['skills','Skills overview'],['contact','Contact info'],['philosophy','My mission & vision'],['stats','Quick stats'],['neofetch','System info'],['ls','List directory'],['cat [file]','Read a file'],['cd [dir]','Change directory'],['pwd','Working directory'],['github','Open GitHub'],['email','Send email'],['date','Current date/time'],['history','Command history'],['clear','Clear terminal']].forEach(([c,d])=>{
     print(`  <span style="color:var(--green);display:inline-block;min-width:120px">${c}</span><span style="color:var(--muted2)">${d}</span>`);
   });
   blank();
@@ -732,6 +734,7 @@ function cmdProjects(){
       </div>
       <div class="p-desc">${p.desc}</div>
       <div style="display:flex;gap:12px;margin-top:6px;flex-wrap:wrap">
+        ${p.landingPage?`<a class="p-link" href="${p.landingPage}" onclick="event.stopPropagation()" style="color:var(--yellow)">📄 Landing Page</a>`:''}
         <a class="p-link" href="https://${p.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()">↗ ${p.link}</a>
         <a class="p-link" href="https://${p.github}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="color:var(--muted2)">⎇ ${p.github.replace('github.com/','')}</a>
       </div>
@@ -838,8 +841,26 @@ function cmdGithub(){print(`  Opening github.com/ANDREW-WEKESA ...`,'info');setT
 function cmdEmail(){print(`  Opening email to andrewekesa675@gmail.com ...`,'info');setTimeout(()=>window.open('mailto:andrewekesa675@gmail.com','_blank'),300);}
 function cmdHistoryCmd(){if(!cmdHistory.length){print('  No history yet.','muted');return;}blank();[...cmdHistory].reverse().forEach((c,i)=>{print(`  <span style="color:var(--muted2)">${String(i+1).padStart(3)}</span>  <span style="color:var(--white)">${esc(c)}</span>`,'muted');});blank();}
 
+function cmdPages(){
+  blank();
+  print(`  <span style="color:var(--yellow);font-weight:700">[ PROJECT LANDING PAGES ]</span>`,'white');
+  blank();
+  const pages=[
+    ['FundiPro','fundipro.html','Service marketplace for skilled workers'],
+    ['HMS','hms.html','Hospital management system with AI']
+  ];
+  pages.forEach(([name,file,desc])=>{
+    print(`  <span style="color:var(--green);display:inline-block;min-width:140px">${name}</span><span style="color:var(--cyan)">${file}</span>`);
+    print(`  <span style="color:var(--muted2);margin-left:140px">${desc}</span>`);
+    blank();
+  });
+  print(`  <span style="color:var(--muted2)">Visit: https://andrew-wekesa.vercel.app/fundipro.html</span>`,'muted');
+  print(`  <span style="color:var(--muted2)">       https://andrew-wekesa.vercel.app/hms.html</span>`,'muted');
+  blank();
+}
+
 const COMMANDS={
-  help:()=>cmdHelp(),whoami:()=>cmdWhoami(),projects:()=>cmdProjects(),skills:()=>cmdSkills(),
+  help:()=>cmdHelp(),whoami:()=>cmdWhoami(),projects:()=>cmdProjects(),pages:()=>cmdPages(),skills:()=>cmdSkills(),
   contact:()=>cmdContact(),philosophy:()=>cmdPhilosophy(),stats:()=>cmdStats(),neofetch:()=>cmdNeofetch(),
   ls:(a)=>cmdLs(a),cat:(a)=>cmdCat(a),cd:(a)=>cmdCd(a),pwd:()=>cmdPwd(),
   github:()=>cmdGithub(),email:()=>cmdEmail(),history:()=>cmdHistoryCmd(),
@@ -891,7 +912,7 @@ function boot(){
   t(()=>print(`  <span style="color:var(--cyan)">Andrew Wekesa Wafula</span>  <span style="color:var(--muted2)">—</span>  <span style="color:var(--white)">Software Engineer · Kisii University · Kenya 🇰🇪</span>`,'white'),after+60);
   t(()=>print(`  <span style="color:var(--muted2)">"Let's think big and recreate our world — a safer and happier place through technology."</span>`,'muted'),after+110);
   t(()=>blank(),after+150);
-  t(()=>print(`  Type <span style="color:var(--green)">help</span> for commands  ·  <span style="color:var(--green)">whoami</span> to meet me  ·  <span style="color:var(--green)">projects</span> to see my work  ·  <span style="color:var(--green)">contact</span> to reach me`,'muted'),after+190);
+  t(()=>print(`  Type <span style="color:var(--green)">help</span> for commands  ·  <span style="color:var(--green)">whoami</span> to meet me  ·  <span style="color:var(--green)">projects</span> to see my work  ·  <span style="color:var(--green)">pages</span> for landing pages`,'muted'),after+190);
   t(()=>blank(),after+230);
   t(()=>hr(),after+250);
   t(()=>blank(),after+270);
