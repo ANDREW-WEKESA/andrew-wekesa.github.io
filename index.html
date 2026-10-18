@@ -616,7 +616,7 @@ function cmdProjects(){
       body.style.display=open?'block':'none';
       toggle.textContent=open?'README â–¾':'README â–¸';
       card.style.borderLeftColor=open?p.color.replace('var(','').replace(')','').trim():p.color;
-      output.scrollTop=output.scrollHeight;
+      if(open){setTimeout(()=>{output.scrollTop=output.scrollHeight;},100);}
     });
     output.appendChild(card);
   });
